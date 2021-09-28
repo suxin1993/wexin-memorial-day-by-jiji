@@ -22,6 +22,7 @@ App({
           that.globalData.userInfo = res.userInfo
           typeof cb == "function" && cb(that.globalData.userInfo)
           // 缓存到store中
+          // 百度统计的上传需要上传机型，屏幕信息以及其他的信息
         }
       })
         }
