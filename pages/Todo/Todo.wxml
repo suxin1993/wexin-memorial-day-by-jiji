@@ -5,7 +5,7 @@
   </view>
   <view class='todoList'>
     <view class='todo-content'>
-      <view wx:for="{{todoList}}">
+      <view wx:for="{{todoList}}" wx:key="item">
        <view class='todoLine'>
         <icon type="{{item.completed ? 'success':'circle'}}" size='27' bindtap='toggleTodo' data-todo-id="{{item.id}}" color="{{item.completed ? 'rgb(137, 245, 239)':'rgb(190,190,190)'}}"></icon>
         <text class='{{item.completed?"textDelete":"text"}}'>{{item.todo}}</text>
