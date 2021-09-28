@@ -1,0 +1,135 @@
+<!--pages/contributor/contributor.wxml-->
+<view>
+  <my-navigationBar></my-navigationBar>
+  <!-- 头部————展示小程序logo，名称 -->
+  <view class='header' style='margin-top: 30rpx;'>
+    <span>
+      <image src='../../image/logo.png'></image>
+    </span>
+    <span class="mima_program_name">
+      纪念日
+    </span>
+  </view>
+
+  <!-- contributor Bar -->
+  <swiper
+    current-item-id="{{currentItemId}}"
+    bindchange="swiperChange"
+    previous-margin="50rpx"
+    next-margin="50rpx">
+    <block wx:for="{{contributors}}" wx:key="{{index}}">
+      <swiper-item item-id="{{index}}">
+        <view class='contributor_bar {{index == currentItemId ? "selected" : ""}}'>
+          <view>
+            <span class='avatar'>
+              <image src='{{item.avatarUrl}}'></image>
+            </span>
+            <span class="contributor_info">
+              <view class='contributor_name'>Contributor: {{item.name}}</view>
+              <view>
+                <span class="con_btn" data-type='Github' data-id="{{index}}" catchtap="copy">
+                  <span class="con_logo">
+                    <image src='../../image/github.png'></image>
+                  </span>  
+                  Github
+                </span>
+                <span class="con_btn" data-type='QQ' data-id="{{index}}" catchtap="copy">
+                  <span class="con_logo">
+                    <image src='../../image/qq.png' style="background-color: #4a8bfe;"></image>
+                  </span>
+                  QQ
+                </span>
+              </view>
+            </span>
+          </view>
+          <view class='disc'>
+            <a>简介：</a>
+            {{item.disc}}
+          </view>
+        </view>
+      </swiper-item>
+    </block>
+  </swiper>
+
+  <!-- TimeLine Bar -->
+  <view class='time_line'>
+    <view catchtap='showTimeLine' class='time_line_header'>
+      <span>
+        <image src='../../image/process.png' class='process'></image>
+      </span>
+      <span>开发历程</span>
+
+      <!-- 下拉三角 -->
+      <span class="triangle" 
+        style="{{showTimeLine ? 'animation: show .7s forwards;' : 'animation: hide .7s forwards;'}}"></span>
+    </view>
+
+    <!-- 静态时间轴的绘制 -->
+    <view class='time_line_bar' hidden="{{showAnimation}}">
+      
+      <!-- 完成庆祝 -->
+      <view class='done' hidden='{{!showTimeLine}}'>
+        <image src='../../image/success.png'></image>
+      </view>
+
+      <!-- 项目经过 -->
+      <view wx:for="{{dots}}" wx:key="{{index}}">
+        <!-- 时间点 -->
+        <view class='time_dot dot_{{index}}'>
+          <image src="{{item.avatarUrl}}"></image>
+        </view>
+
+        <!-- 对话框左侧三角 -->
+        <view class='tris detail_{{index}}'></view>
+
+        <!-- 时间线 -->
+        <view class='line line_{{index}}'>
+        </view>
+
+        <!-- 时间点对应详情 -->
+        <view class='detail detail_{{index}}'>
+          <a>{{item.time}}</a>
+          <view class='detail_info'>{{item.detail}}</view>
+        </view>
+      </view>
+    </view>  
+
+    <!-- 动态时间轴的绘制 -->
+    <view class='time_line_bar' hidden='{{!showAnimation}}'
+      style="{{showTimeLine ? 'animation: increase_height .8s forwards;':'animation: recover_height .6s forwards;'}}">
+      
+      <!-- 完成庆祝 -->
+      <view class='done' hidden='{{!showTimeLine}}'>
+        <image src='../../image/success.png'></image>
+      </view>
+
+      <!-- 项目经过 -->
+      <view wx:for="{{dots}}" wx:key="{{index}}">
+        <!-- 时间点 -->
+        <view class='time_dot dot{{index}}'>
+          <image src="{{item.avatarUrl}}"></image>
+        </view>
+
+        <!-- 对话框左侧三角 -->
+        <view class='tris detail{{index}}'></view>
+
+        <!-- 时间线 -->
+        <view class='line line{{index}}'>
+        </view>
+
+        <!-- 时间点对应详情 -->
+        <view class='detail detail{{index}}'>
+          <a>{{item.time}}</a>
+          <view class='detail_info'>{{item.detail}}</view>
+        </view>
+      </view>
+    </view>
+
+  </view>
+
+  <view class='star'>
+    觉得不错，就给个
+    <a data-type="star" catchtap="copy">⭐</a>
+    吧   o(≧v≦)o
+  </view>
+</view>

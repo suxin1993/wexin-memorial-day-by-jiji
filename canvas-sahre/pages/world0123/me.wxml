@@ -1,0 +1,70 @@
+<view class="page" bindtouchend='touchend' bindtouchstart='touchstart'>
+  <!-- navigationBar -->
+  <view>
+    <view class='navTitle' style='height: 44px;padding-top: {{statusBarHeight}}px'>
+      <!-- <span class='back' bindtap="navBack"></span> -->
+      <icon class='iconfont iconother' style='color:rgb(83, 83, 83);font-size:50px;postion:absolute;top:36rpx;left:2rpx;' bindtouchend='showview'></icon>
+      纪念日
+    </view>
+    <view class='occupy' style='height: 80rpx;'></view>
+  </view>
+
+  <!-- 侧滑栏 -->
+  <view class="page_tab" style='display:{{display}}'>
+    <view class="page_tab_content">
+      <view class="userinfo">
+        <view class="userinfo-avatar">
+          <open-data  type="userAvatarUrl"></open-data>
+        </view>
+        <open-data type="userNickName" class='userinfo-nickname'></open-data>
+      </view>
+      <view class='bgbody'>
+        <button class='btn' style='position:absolute;top:155px;'bindtap='GoHome'>
+        <icon class='iconfont iconyingyong_zhengchang'> <text class='TXT'>主页</text></icon>
+        </button>
+        <button class='btn' style='position:absolute;top:230px;'bindtap='GoAdd'>
+        <icon class='iconfont iconxinzeng'> <text class='TXT'>添加</text></icon>
+        </button>
+        <button class='btn' style='position:absolute;top:305px;'bindtap='GoContributor'>
+        <icon class='iconfont iconheadlines'> <text class='TXT'>关于</text></icon>
+        </button>
+        <button class='btn' style='position:absolute;top:380px;'open-type='share'>
+        <icon class='iconfont iconfenxiang'> <text class='TXT'>分享</text></icon>
+        </button>
+      </view>
+    </view>
+  </view>
+
+  <!--遮罩层-->
+  <view class="bg" bindtap='hideview' style='display:{{display}}'></view>
+
+  <!-- 主页 -->
+  <view class="home" style="{{translate}};background-color:{{bgColor}}">
+   <view style='height:22px;'></view>
+    <!-- <view class='top'>
+      <icon class='iconfont iconother' style='color:rgb(83, 83, 83);font-size:50px;postion:absolute;top:13px;left:2rpx;' bindtouchend='showview'></icon>
+      <text class='txt'>纪念日</text>
+    </view> -->
+    <scroll-view class='card_container' scroll-y='{{isScroll}}'>
+        <navigator url='../detail/detail?id={{item._id}}' wx:key="items" wx:for="{{data}}">
+          <view data-index='{{index}}' class="order_item" bindtouchstart="drawStart" bindtouchmove="drawMove" bindtouchend="drawEnd" style="right:{{item.right}}rpx;opacity:{{item.opacity_value}};" id="viewx" >
+            <view>
+              <span class='emmmm'>D</span>
+              <text class='emmmm'>{{item.day}}</text>
+            </view>
+            <view>
+              <text class='title'>{{item.title}} </text>
+              <!---
+              <text wx:if='{{item.content.length<20}}'>{{item.content}}</text>
+              <text wx:else>{{item.absContent}}...</text>
+              -->
+            </view>
+            <view style='padding-top:40rpx'><text>{{item.date}}</text></view>
+
+          </view>
+        </navigator>
+    </scroll-view>
+    <view class="plus-button" bindtap="addpage">+</view>
+  </view>
+
+</view>

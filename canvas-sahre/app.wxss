@@ -1,0 +1,59 @@
+/**app.wxss**/
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 200rpx 0;
+  box-sizing: border-box;
+  background-color: rgb(255, 255, 255);
+} 
+@font-face {
+  font-family: 'iconfont';  /* project id 1067994 */
+  src: url('//at.alicdn.com/t/font_1067994_gzg4mehg50u.eot');
+  src: url('//at.alicdn.com/t/font_1067994_gzg4mehg50u.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_1067994_gzg4mehg50u.woff2') format('woff2'),
+  url('//at.alicdn.com/t/font_1067994_gzg4mehg50u.woff') format('woff'),
+  url('//at.alicdn.com/t/font_1067994_gzg4mehg50u.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_1067994_gzg4mehg50u.svg#iconfont') format('svg');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-jiahao-fill:before {
+  content: "\e660";
+}
+
+.icon-zhiding:before {
+  content: "\e704";
+}
+
+.icon-jiahao:before {
+  content: "\e721";
+}
+
+.icon-icon_calendar:before {
+  content: "\eb91";
+}
+
+.icon-icon_compile:before {
+  content: "\eb93";
+}
+
+.icon-icon_ding:before {
+  content: "\eb94";
+}
+
+.icon-icon_next_arrow:after {
+  content: "\eb99";
+}
+
+.icon-icon_photo:before {
+  content: "\eb9a";
+}

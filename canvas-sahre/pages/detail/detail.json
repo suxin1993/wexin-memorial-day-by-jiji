@@ -1,0 +1,8 @@
+{
+
+  "usingComponents": {
+    "canvas-share": "../../components/canvas-share/index",
+    "my-navigationBar": "../../components/navigationBar/navigationBar"
+  },
+  "disableScroll": true
+}

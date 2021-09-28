@@ -1,0 +1,16 @@
+{
+  "pages": [
+    "pages/world0123/me",
+    "pages/contributor/contributor",
+    "pages/add/add",
+    "pages/detail/detail",
+    "pages/test/test"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#ffff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "black",
+    "navigationStyle": "custom"
+  }
+}

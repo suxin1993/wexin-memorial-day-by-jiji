@@ -1,0 +1,61 @@
+/* pages/add/add.wxss */
+page{
+  width: 100%;
+  height: 100%;
+}
+.switchstyle{
+  padding: 0rpx 0rpx;
+  border-bottom: 0rpx;
+  align-items: right；
+}
+.container{
+  padding: 0rpx 0rpx; 
+}
+.itemstyle{
+  display: flex;
+  padding: 30rpx 30rpx ;
+  vertical-align: center;
+  font-size: 32rpx;
+  border-bottom: 5rpx solid #f8f8f8;
+}
+.textarea_warp{
+  padding: 30rpx 30rpx ;
+  font-size: 32rpx;
+  background-color: #f8f8f8;
+}
+.form_put view input{
+  text-align: right;
+  position: absolute;
+  right: 40rpx;
+}
+.pickers{
+  right: 40rpx;
+  position: absolute;
+}
+.buttons{
+  margin-top: 70rpx;
+  width: 80%;
+  border-radius:40rpx; 
+}
+.itemstyle switch{
+  text-align: center;
+}
+.itemstyle swiper-item{
+  width: 550rpx !important;
+  left: 70rpx;
+  box-sizing: border-box;
+  padding: 40rpx 0rpx 70rpx;
+  overflow: initial;
+}
+.itemstyle swiper-item .bg-img {
+  width: 100%;
+  display: block;
+  height: 100%;
+  border-radius: 10rpx;
+  transform: scale(0.9);
+  box-shadow: -5rpx 5rpx 10rpx #d6d6d6;
+}
+.itemstyle .cur .bg-img {
+  transform: none;
+  box-shadow:-5rpx 5rpx 10rpx #d6d6d6;
+}
