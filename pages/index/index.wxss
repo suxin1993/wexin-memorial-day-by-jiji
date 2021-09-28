@@ -1,18 +1,41 @@
 /**index.wxss**/
-.container{
- 
- 
-  color: rgba(245,88,156,1);
-  height:100vh;
-  width:100%;
+.container {
+    color: rgba(245, 88, 156, 1);
+    height: 100vh;
+    width: 100%;
 }
 
+.city {
+    height: 20rpx;
+    position: absolute;
+    right: 20rpx;
+    top: 20rpx;
+    color: rgba(0, 0, 0, 1);
+    z-index: 100;
+}
 
 .photo-swiper {
-  height: 100vh;
-  width: 100%;
+    height: 100vh;
+    width: 100%;
 }
+
 .photo-swiper image {
-  width: 100%;
-  height: 100vh;
+    width: 100%;
+    height: 100vh;
+}
+
+.memorial-love-day {
+    height: 20rpx;
+    position: absolute;
+    left: 20rpx;
+    top: 20rpx;
+    z-index: 100;
+}
+
+.memorial-meet-day {
+    height: 20rpx;
+    position: absolute;
+    left: 20rpx;
+    top: 50rpx;
+    z-index: 100;
 }

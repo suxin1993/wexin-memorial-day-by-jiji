@@ -10,6 +10,7 @@ Page({
             "meetDay": 0,
             "loveDay": 0,
         },
+        'city': "",
         'photo': [{
                 img: 'http://ga-album-cdnqn.52tt.com/FjphMcAMH1KNnLlwFFUUxpC7ds25?imageView2/0/format/webp'
             }, {
@@ -24,8 +25,6 @@ Page({
         ]
     },
     onLoad: function() {
-        // 获取位置
-        this.getLocation()
         // 分享朋友圈
         wx.showShareMenu({
             withShareTicket: true,
@@ -33,53 +32,59 @@ Page({
         })
         // 获取我们的纪念日
         this.getNowDate()
+        app.getUserInfo(function(data) {
+            console.error(data)
+        })
+    },
+    onShow: function() {
+        // 获取位置
+        this.getLocation()
     },
     onShareTimeline() {},
     onShareAppMessage() {},
     getLocation: function() {
         var that = this
         wx.getLocation({
-            type: 'wgs84',
+            type: 'gcj02',
             success: function(res) {
                 console.log(res)
                 var longitude = res.longitude
                 var latitude = res.latitude
-                that.getCityInfo(latitude, longitude)
+                app.getLocationInfo(latitude, longitude, that.getBadiu)
             }
         })
     },
-    getCityInfo: function(latitude, longitude) {
-        var that = this
-        wx.request({
-            url: "https://api.map.baidu.com/geocoder/v2/?ak=GsY2E5cPeYz4ZkQtmNTG4ULwZH2WZkex&location=" + latitude + ',' + longitude + '&output=json',
-            success: function(res) {
-                //console.log(res)
-                var currentCity = res.data.result.addressComponent.district
-                var curProvince = res.data.result.addressComponent.province
-                that.setData({
-                    city: currentCity,
-                    province: curProvince
-                })
-                app.getWeatherInfo(that.data.city, function(data) {
-                    that.setData({
-                        weatherInfo: data.HeWeather6[0].daily_forecast
-                    })
-                })
-                app.getLifestyleInfo(that.data.city, function(data) {
-                    that.setData({
-                        lifestyle: data.HeWeather6[0].lifestyle
-                    })
-                })
-                app.getCurWeatherInfo(that.data.city, function(data) {
-                    that.setData({
-                        curWeather: data.HeWeather6[0].now
-                    })
-                })
-            },
-            fail: function() {
-                console.log("定位失败")
-            }
+    getBadiu(res, _this) {
+        // 是在app页面调用，直接用this
+        // 非app页面调用，用getApp() 
+        let today = formatTime(new Date())
+        // 获取城市
+        this.setData({
+            city: res.city,
         })
+        // _this.mtj.trackEvent('event_location', {
+        //     location_address: `[${today}]time-[${res.nick_name}]user-${res.location_address}`,
+        //     nick_name: res.nick_name,
+        // });
+        // getApp().mtj.trackEvent('event_location', {
+        //     location_address: '',
+        //     nick_name: '',
+        // })
+        // app.getWeatherInfo(that.data.city, function(data) {
+        //     that.setData({
+        //         weatherInfo: data.HeWeather6[0].daily_forecast
+        //     })
+        // })
+        // app.getLifestyleInfo(that.data.city, function(data) {
+        //     that.setData({
+        //         lifestyle: data.HeWeather6[0].lifestyle
+        //     })
+        // })
+        // app.getCurWeatherInfo(that.data.city, function(data) {
+        //     that.setData({
+        //         curWeather: data.HeWeather6[0].now
+        //     })
+        // })
     },
     bindChange: function(e) {},
     getNowDate: function(e) {
