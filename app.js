@@ -1,20 +1,22 @@
 /*
  * @Author: your name
  * @Date: 2021-09-13 18:53:38
- * @LastEditTime: 2021-09-29 13:58:01
+ * @LastEditTime: 2021-09-29 16:13:46
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /wexin-memorial-day-by-jiji/app.js
  */
 //app.js定义页面启动入口
 // 引入百度统计
-const mtjwxsdk = require('./utils/mtj-wx-sdk.js');
+if (wx.getSystemInfoSync().brand == "devtools") {
+    wx.dev = true
+}
+if (!wx.dev) {
+    var mtjwxsdk = require('./utils/mtj-wx-sdk.js');
+}
 App({
     onLaunch: function() {
-        // 展示本地存储能力
-        var logs = wx.getStorageSync('logs') || []
-        logs.unshift(Date.now())
-        wx.setStorageSync('logs', logs)
+
     },
     //地图定位精确方法
     /**
@@ -141,11 +143,16 @@ App({
                     cb({
                         location_address: res.result.address,
                         city: res.result.address_component.city,
-                        nick_name: _this.globalData.userInfo.nickName,
                     }, _this)
                 }, 2000)
             },
             fail: function(error) {
+                setTimeout(() => {
+                    cb({
+                        location_address: "腾讯位置服务获取位置失败",
+                        city: '',
+                    }, _this)
+                }, 2000)
                 console.error(error);
             },
             complete: function(res) {
@@ -158,19 +165,32 @@ App({
         if (this.globalData.userInfo) {
             typeof cb == "function" && cb(this.globalData.userInfo)
         } else {
-            wx.login({
-                success: function() {
-                    // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认
-                    // 开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
-                    wx.getUserProfile({
-                        desc: '用于完善会员资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
-                        success: (res) => {
-                            that.globalData.userInfo = res.userInfo
-                            typeof cb == "function" && cb(that.globalData.userInfo)
-                            // 缓存到store中
-                            // 百度统计的上传需要上传机型，屏幕信息以及其他的信息
-                        }
-                    })
+            wx.showModal({
+                title: '温馨提示',
+                content: '正在请求您的个人信息',
+                success(res) {
+                    if (res.confirm) {
+                        // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认
+                        // 开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
+                        wx.getUserProfile({
+                            desc: "获取您的昵称",
+                            // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+                            success: res => {
+                                that.globalData.userInfo = res.userInfo
+                                typeof cb == "function" && cb(that.globalData.userInfo)
+                                // 百度统计的上传需要上传机型，屏幕信息以及其他的信息
+                            },
+                            fail: res => {
+                                //拒绝授权
+                                that.showErrorModal('您拒绝了请求');
+                                return;
+                            }
+                        })
+                    } else if (res.cancel) {
+                        //拒绝授权 showErrorModal是自定义的提示
+                        that.showErrorModal('您拒绝了请求');
+                        return;
+                    }
                 }
             })
         }

@@ -33,13 +33,13 @@
             },
             {
                 "pagePath": "pages/Todo/Todo",
-                "text": "Todo",
+                "text": "待办事项",
                 "iconPath": "image/todo-o.png",
                 "selectedIconPath": "image/Todo.png"
             },
             {
                 "pagePath": "pages/Anniversary/Anniver",
-                "text": "Anniversary",
+                "text": "纪念日",
                 "iconPath": "image/date.png",
                 "selectedIconPath": "image/date-selected.png"
             }
