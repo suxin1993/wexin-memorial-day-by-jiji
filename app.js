@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-09-13 18:53:38
- * @LastEditTime: 2021-09-28 20:56:34
+ * @LastEditTime: 2021-09-29 13:58:01
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /wexin-memorial-day-by-jiji/app.js
@@ -158,13 +158,17 @@ App({
         if (this.globalData.userInfo) {
             typeof cb == "function" && cb(this.globalData.userInfo)
         } else {
-            //调用登录接口
             wx.login({
                 success: function() {
-                    wx.getUserInfo({
-                        success: function(res) {
+                    // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认
+                    // 开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
+                    wx.getUserProfile({
+                        desc: '用于完善会员资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+                        success: (res) => {
                             that.globalData.userInfo = res.userInfo
                             typeof cb == "function" && cb(that.globalData.userInfo)
+                            // 缓存到store中
+                            // 百度统计的上传需要上传机型，屏幕信息以及其他的信息
                         }
                     })
                 }

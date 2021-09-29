@@ -1,0 +1,28 @@
+<swiper indicator-dots="true" autoplay="true" circular="true" class="{{bounceIn}}">
+    <swiper-item wx:for="{{bannerList}}">
+        <image class="img" src="{{item}}" mode='aspectFill'></image>
+    </swiper-item>
+</swiper>
+<scroll-view>
+    <block wx:for="{{articleList}}" wx:for-item="item" wx:for-index="index">
+        <view catchtap="details" data-aid="{{item.id}}">
+            <view class="article">
+                <view class="author-data {{bounceInLeft}}">
+                    <image class="avatar" src="{{item.avatar}}"></image>
+                    <text class="nickname">{{item.name}}</text>
+                    <i class="iconfont icon-v{{item.level}} level"></i>
+                </view>
+                <image class="thumbnail {{bounceInRight}}" src="{{item.thumbnail}}" mode="aspectFit"></image>
+                <text class="introduce {{bounceInLeft}}">{{item.content}}</text>
+                <view class="operate {{bounceInLeft}}">
+                    <i class="iconfont icon-liulan operate-icon"></i>
+                    <text class="perate-count">{{item.views}}</text>
+                    <i class="iconfont icon-msnui-love operate-icon" data-id="{{item.id}}"
+                       style="color: {{item.canLike ? '#aaa' : 'pink'}};" catchtap="likeThis"></i>
+                    <text class="perate-count">{{item.likes}}</text>
+                    <text class="perate-count create-date">{{item.date}}</text>
+                </view>
+            </view>
+        </view>
+    </block>
+</scroll-view>

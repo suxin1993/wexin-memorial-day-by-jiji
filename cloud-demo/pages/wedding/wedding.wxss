@@ -1,0 +1,23 @@
+@import '../../utils/ripples.min.wxss';
+.container{
+    background: #f2f2f2;
+}
+
+.wed-container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    background:rgb(252, 170, 188);
+}
+
+.title-image{
+    width: 100%;
+    height: 120px;
+}
+
+.list-image{
+    width: 100%;
+}

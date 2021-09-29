@@ -11,18 +11,8 @@ Page({
             "loveDay": 0,
         },
         'city': "",
-        'photo': [{
-                img: 'http://ga-album-cdnqn.52tt.com/FjphMcAMH1KNnLlwFFUUxpC7ds25?imageView2/0/format/webp'
-            }, {
-                img: 'http://ga-album-cdnqn.52tt.com/FpP-noZhtAQY94Ho2xwugxdNwae3?imageView2/0/format/webp'
-            },
-            {
-                img: 'http://ga-album-cdnqn.52tt.com/FpJUmp1SLP3RkKRDL6p50-HTmjKq?imageView2/0/format/webp'
-            },
-            {
-                img: 'http://ga-album-cdnqn.52tt.com/FhbkRYrOCRbcW7lJYPi4D267HE4H?imageView2/0/format/webp'
-            },
-        ]
+
+        'photo': []
     },
     onLoad: function() {
         // 分享朋友圈

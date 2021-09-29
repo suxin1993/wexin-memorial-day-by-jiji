@@ -1,0 +1,127 @@
+/**index.wxss**/
+@import '../../utils/ripples.min.wxss';
+
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.userinfo-avatar {
+  width: 128rpx;
+  height: 128rpx;
+  top:15%;
+  border-radius: 50%;
+  z-index: 99;
+  position:absolute;
+}
+
+.userinfo-get {
+    top:15%;
+    z-index: 99;
+    position:absolute;
+}
+
+.usermotto {
+  margin-top: 450px;
+  color: #2c2e3b
+}
+
+.container {
+  position:fixed;
+  overflow:hidden;
+  background-image:url('https://pic2.zhimg.com/v2-dd1ffb087bda594b40269cb964296ce5_r.jpg');
+  background-size:100% 100%;
+  height:100%;
+  width:100%;
+}
+
+.text-two{
+  margin: 1170rpx 0rpx;
+  position:absolute;
+}
+
+.text{
+  bottom:-70%;
+  position:absolute;
+}
+
+.text-want{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:34rpx;
+  font-weight:700;
+  background:white;
+  opacity:0.5;
+  color: #600030;
+}
+
+.index-image-1{
+    margin: 600rpx -100rpx;
+    width: 400rpx;
+    height: 400rpx;
+    border:solid 1px white;
+    position:absolute;
+}
+
+.index-image-2{
+    margin: 450rpx 250rpx;
+    width: 300rpx;
+    height: 300rpx;
+    border:solid 1px white;
+    position:absolute;
+}
+
+.index-image-3{
+     margin: 150rpx -200rpx;
+     width: 450rpx;
+     height: 450rpx;
+     border:solid 1px white;
+     position:absolute;
+ }
+
+.index-image-4{
+    margin: 100rpx 150rpx;
+    width: 350rpx;
+    height: 350rpx;
+    border:solid 1px white;
+    position:absolute;
+}
+
+.arrow {
+  width: 50rpx;
+  height: 50rpx;
+  justify-content: center;
+}
+
+.music {
+  position: absolute;
+  z-index: 99;
+  -webkit-animation-iteration-count: infinite;
+}
+
+/* 旋转class */
+.music-on {
+  animation: music-rotate 15s linear infinite;
+}
+
+/* 旋转动画 */
+@keyframes music-rotate {
+  0% {
+    transform: rotateZ(0deg);
+  }
+
+  100% {
+    transform: rotateZ(360deg);
+  }
+}
+
+/* 漂浮动画 */
+@keyframes float{
+  from{transform:translate(0,0)}
+  to{transform:translate(0,6px)}
+}
+.float{
+    animation: float 1.3s ease-in-out 2.7s infinite alternate;
+}

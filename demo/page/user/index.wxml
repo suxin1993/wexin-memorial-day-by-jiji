@@ -1,0 +1,26 @@
+<view class="head">
+  <view class="user">
+    <view wx:if="{{hasUserInfo === true}}">
+      <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}"></image>
+    </view>
+    <view wx:else>
+      <button class="userinfo-avatar" open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="bindGetUserInfo"></button>
+    </view>
+  </view>
+  <view class="nickname">
+    <text>{{userInfo.nickName}}</text>
+  </view>
+</view>
+
+<view class="area">
+  <!-- <navigator url="setting/index" class="navigator">
+  <image src='setting.png' class="settingImage"></image>
+    <view class="navigator-text">通用设置</view>
+    <view class="navigator-arrow"></view>
+  </navigator> -->
+  <view class="bottom">
+    <button class='btn' bindtap='getBarcode'>小程序码</button>
+    <button class='btn' bindtap="about">关于</button>
+    <button class='btn' bindtap="clear">清除缓存</button>
+  </view>
+</view>

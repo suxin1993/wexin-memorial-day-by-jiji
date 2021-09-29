@@ -1,0 +1,39 @@
+<!--pages/add/add.wxml-->
+<my-navigationBar></my-navigationBar>
+<view class='container'>
+  <form class='form_put' bindsubmit='subdata'>
+    <view class='itemstyle'><!--表单的具体内容-->
+      <icon class='iconfont icon-icon_ding'> 名称：</icon>  
+      <input  name="text_name" placeholder='请输入'></input>
+    </view>
+    <view class='itemstyle'>
+      <icon class='iconfont icon-icon_calendar'> 选择日期：</icon>  
+      <view class='pickers'>
+        <picker mode="date" value="{{date}}" start="2019-02-22" end="2050-12-31" bindchange="bindDateChange" name='d'>
+           {{date}}
+        </picker>
+      </view>
+    </view>
+    <view class='itemstyle'>
+      <icon class='iconfont icon-zhiding'> 是否置顶：</icon> 
+      <view class='pickers'>
+        <switch class='switchstyle' name='upmost'></switch>
+      </view>   
+    </view>
+    <view class='itemstyle'>
+      <icon class='iconfont icon-icon_photo'> 修改封面：</icon>  
+    </view>
+    <swiper class='itemstyle' style='height:420rpx;background-color:#F8F8F8;' indicator-dots="ture" circular="ture" indicator-color="#8799a3" indicator-active-color="#0081ff" bindchange="cardSwiper">
+      <swiper-item wx:for="{{picture}}" wx:key class="{{cardCur==index?'cur':''}}">
+        <image src='/image/img{{item}}.jpg'  class='bg-img shadow-blur'></image>
+      </swiper-item>
+    </swiper>
+    <view class='itemstyle' style='border-bottom:0rpx;'>
+      <icon class='iconfont icon-icon_compile'> 输入简介：</icon>  
+    </view>
+    <view class='textarea_warp'>
+      <textarea auto-focus='ture' style="height: 3em ;" name = "shorttext" placeholder = "请输入简介"/>
+    </view>    
+    <button form-type='submit' type='primary' class='buttons'>完成</button>
+  </form>
+</view>

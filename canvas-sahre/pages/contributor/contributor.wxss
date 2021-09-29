@@ -1,0 +1,382 @@
+/* pages/contributor/contributor.wxss */
+page{
+  background-color: #f8f8f9;
+  width: 100%;
+  height: 100%;
+  color: #495060;
+}
+
+.header,
+.contributor_bar,
+.time_line,
+.star{
+  margin: 20rpx 50rpx;
+  background-color: #fff;
+  border-radius: 15rpx;
+  box-shadow: -8rpx 8rpx 20rpx #e2e2e2;
+}
+
+.mima_program_name{
+  font-weight: bold;
+}
+
+span{
+  display: inline-block;
+}
+
+.header image,
+.avatar image{
+  width: 120rpx;
+  height: 120rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+  vertical-align: middle;
+  box-shadow: -8rpx 10rpx 20rpx #e2e2e2;
+}
+
+swiper{
+  height: 338rpx;
+}
+
+.scroll_bar{
+  display: flex;
+  flex-direction: row;
+}
+
+.contributor_bar{
+  margin: 20rpx 0;
+  background-color: #e6e6e6;
+  transform: scale(0.9);
+}
+
+.selected{
+  transform: scale(1);
+}
+
+.avatar{
+  vertical-align: bottom;
+}
+
+.avatar image{
+  border-radius: 10rpx;
+}
+
+.contributor_info{
+  margin: 20rpx 0;
+}
+
+.contributor_name{
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom:15rpx;
+}
+
+.con_btn{
+  font-size: 16px;
+  color: #fff;
+  text-align: center;
+  margin: 0 30rpx 0 0;
+  border-radius: 40rpx;
+  padding: 8rpx 24rpx;
+  background-color: #4a8dfe;
+}
+
+.con_logo{
+  border-radius: 50%;
+  padding: 0;
+  background-color: #515151;
+}
+
+.con_logo image{
+  vertical-align: top;
+  width: 45rpx;
+  height: 45rpx;
+}
+
+.disc{
+  padding: 20rpx;
+  background-color: #fff;
+  border-radius: 10rpx;
+  border-top-left-radius: 30rpx;
+  border-top-right-radius: 30rpx;
+  min-height: 100rpx;
+}
+
+.time_line,
+.star{
+  margin: 20rpx 50rpx 30rpx;
+  padding: 20rpx;
+}
+
+.time_line{
+  position: relative;
+}
+
+.triangle{
+  content: '';
+  width: 0;
+  height: 0;
+  border: 0 solid #515151;
+  border-top-width: 20rpx;
+  border-left: 17rpx solid transparent;
+  border-right: 17rpx solid transparent;
+  position: absolute;
+  top: 40rpx;
+  right: 30rpx;
+}
+
+@keyframes show{
+  from {transform: rotate(0deg);}
+  to {transform: rotate(180deg);}
+}
+
+@keyframes hide{
+  from {transform: rotate(180deg);}
+  to {transform: rotate(0deg);}
+}
+
+.process{
+  width: 60rpx;
+  height: 60rpx;
+  vertical-align: middle;
+  margin-right: 15rpx;
+}
+
+.time_line_header{
+  padding-bottom: 20rpx;
+}
+
+.time_line_bar{
+  min-height: 510rpx;
+  border-top: 1px solid #e2e2e2;
+  position: relative;
+}
+
+@keyframes increase_height{
+  from {min-height: 0rpx;}
+  to {min-height: 510rpx;}
+}
+
+@keyframes recover_height{
+  from {min-height: 510rpx;}
+  to {min-height: 0rpx;}
+}
+
+.done{
+  width: 70rpx;
+  height: 70rpx;
+  position: absolute;
+  top: 20rpx;
+  left: 10rpx;
+  z-index: 10;
+}
+
+.done::after{
+  content: '完工🎉🎉';
+  width: 200rpx;
+  position: absolute;
+  top: 10rpx;
+  left: 110rpx;
+}
+
+.done image{
+  width: 70rpx;
+  height: 70rpx;
+  z-index: 10;
+}
+
+/****************** dots的样式 ******************/
+.time_dot{
+  width: 50rpx;
+  height: 50rpx;
+  border-radius: 10rpx;
+  position: absolute;
+  top: 20rpx;
+  left: 20rpx;
+  padding: 0;
+  opacity: 1;
+  z-index: 1;
+}
+.time_dot image{
+  width: 50rpx;
+  height: 50rpx;
+  border-radius: 10rpx;
+}
+.dot_0{
+  top: 150rpx;
+}
+.dot_1{
+  top: 280rpx;
+}
+.dot_2{
+  top: 410rpx;
+}
+.dot_3{
+  top: 540rpx;
+}
+.dot0{
+  animation: dot_move0 1.5s forwards;
+  animation-delay: 0;
+}
+.dot1{
+  animation-delay: .4s;
+  animation: dot_move1 1.5s forwards;
+}
+.dot2{
+  animation-delay: .7s;
+  animation: dot_move2 1.5s forwards;
+}
+.dot3{
+  animation-delay: 1s;
+  animation: dot_move3 1.5s forwards;
+}
+
+/* dots的移动动画，移动单位130rpx */
+@keyframes dot_move0{
+  from {opacity: .2;top: 20rpx;}
+  to {opacity: 1;top: 150rpx;}
+}
+@keyframes dot_move1{
+  from {opacity: .2;top: 20rpx;}
+  to {opacity: 1;top: 280rpx;}
+}
+@keyframes dot_move2{
+  from {opacity: .2;top: 20rpx;}
+  to {opacity: 1;top: 410rpx;}
+}
+@keyframes dot_move3{
+  from {opacity: .2;top: 20rpx;}
+  to {opacity: 1;top: 540rpx;}
+}
+
+/*************** 对话框左侧三角样式及动画 ***************/
+.tris{
+  z-index: 1;
+  position: absolute;
+  top: 40rpx;
+  left: 90rpx;
+  width: 0;
+  height: 0;
+  border: 0 solid #82acff;
+  border-right-width: 25rpx;
+  border-top: 20rpx solid transparent;
+  border-bottom: 20rpx solid transparent;
+}
+
+/****************** 时间线样式及动画 *****************/
+.line{
+  position: absolute;
+  top: 20rpx;
+  left: 40rpx;
+  display: inline-block;
+  width: 10rpx;
+  height: 120rpx;
+  background-color: #ff8cbada;
+  opacity: 1;
+}
+.line_0{
+  top: 20rpx;
+}
+.line_1{
+  top: 150rpx;
+}
+.line_2{
+  top: 280rpx;
+}
+.line_3{
+  top: 410rpx;
+}
+.line0{
+  animation: line_move0 .5s forwards;
+  animation-timing-function:ease-in;
+  animation-delay: 0;
+}
+.line1{
+  animation: line_move1 .5s forwards;
+  animation-timing-function:ease-in;
+  animation-delay: .4s;
+}
+.line2{
+  animation: line_move2 .5s forwards;
+  animation-timing-function:ease-in;
+  animation-delay: .7s;
+}
+.line3{
+  animation: line_move3 .5s forwards;
+  animation-timing-function:ease-in;
+  animation-delay: 1s;
+}
+@keyframes line_move0{
+  from {opacity: 0;top: 20rpx;}
+  to {opacity: 1;top: 20rpx;}
+}
+@keyframes line_move1{
+  from {opacity: 0;top: 20rpx;}
+  to {opacity: 1;top: 150rpx;}
+}
+@keyframes line_move2{
+  from {opacity: 0;top: 20rpx;}
+  to {opacity: 1;top: 280rpx;}
+}
+@keyframes line_move3{
+  from {opacity: 0;top: 20rpx;}
+  to {opacity: 1;top: 410rpx;}
+}
+
+/* detail样式及动画 */
+.detail{
+  position: absolute;
+  left: 110rpx;
+  display: inline-block;
+  width: 400rpx;
+  height: 90rpx;
+  color: #8bffff;
+  background-color: #82acff;
+  border-radius: 8rpx;
+  padding: 7rpx 12rpx 10rpx;
+  font-size: 18px;
+}
+.detail_info{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.detail a{
+  font-weight: bold;
+}
+.detail_0{
+  top: 150rpx;
+}
+.detail_1{
+  top: 280rpx;
+}
+.detail_2{
+  top: 410rpx;
+}
+.detail_3{
+  top: 540rpx;
+}
+.detail0{
+  top: 150rpx;
+  animation-delay: 4s;
+  animation: detail0 6s forwards;
+}
+.detail1{
+  top: 280rpx;
+  animation-delay: 4s;
+  animation: detail0 6s forwards;
+}
+.detail2{
+  top: 410rpx;
+  animation-delay: 4s;
+  animation: detail0 6s forwards;
+}
+.detail3{
+  top: 540rpx;
+  animation-delay: 4s;
+  animation: detail0 6s forwards;
+}
+@keyframes detail0{
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
