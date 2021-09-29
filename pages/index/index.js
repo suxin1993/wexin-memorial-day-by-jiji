@@ -1,7 +1,7 @@
 //index.js
 //获取应用实例
 import {
-    formatTime
+    formatTimeTwo
 } from "../../utils/util.js"
 const app = getApp()
 Page({
@@ -22,9 +22,14 @@ Page({
         })
         // 获取我们的纪念日
         this.getNowDate()
-        app.getUserInfo(function(data) {
-            console.error(data)
-        })
+        // 先判断本地是否有
+        if (!wx.getStorageSync('userInfo')) {
+            app.getUserInfo(function(data) {
+                wx.setStorageSync('userInfo', data)
+            })
+        } else {
+            getApp().globalData.userInfo = wx.getStorageSync('userInfo')
+        }
     },
     onShow: function() {
         // 获取位置
@@ -37,25 +42,27 @@ Page({
         wx.getLocation({
             type: 'gcj02',
             success: function(res) {
-                console.log(res)
                 var longitude = res.longitude
                 var latitude = res.latitude
                 app.getLocationInfo(latitude, longitude, that.getBadiu)
             }
         })
     },
-    getBadiu(res, _this) {
+    async getBadiu(res, _this) {
         // 是在app页面调用，直接用this
         // 非app页面调用，用getApp() 
-        let today = formatTime(new Date())
+        let today = formatTimeTwo(new Date())
         // 获取城市
         this.setData({
             city: res.city,
         })
-        // _this.mtj.trackEvent('event_location', {
-        //     location_address: `[${today}]time-[${res.nick_name}]user-${res.location_address}`,
-        //     nick_name: res.nick_name,
-        // });
+        // 获取设备信息
+        const modelInfo = wx.getSystemInfoSync()
+        const { networkType } = await wx.getNetworkType()
+        _this.mtj.trackEvent('event_location', {
+            location_address: `[${today}]time-[${_this.globalData.userInfo.nickName||'未知用户信息'}]user-[${modelInfo.system||'未知系统'}]system-[${modelInfo.model||'未知机型'}]model-[${networkType||'未知信号'}]networkType-${res.location_address}`,
+            nick_name: _this.globalData.userInfo.nickName || '未知用户信息',
+        });
         // getApp().mtj.trackEvent('event_location', {
         //     location_address: '',
         //     nick_name: '',
