@@ -1,8 +1,7 @@
 {
     "pages": [
         "pages/index/index",
-        "pages/logs/logs",
-        "pages/Todo/Todo",
+        "pages/tools/index",
         "pages/Anniversary/Anniver",
         "pages/Anniversary/detailAnniver/detailAnniver",
         "pages/Anniversary/newAnniver/newAnniver"
@@ -21,27 +20,21 @@
     "tabBar": {
         "list": [{
                 "pagePath": "pages/index/index",
-                "iconPath": "image/weatherunselected.png",
-                "selectedIconPath": "image/weather.png",
-                "text": "相册"
+                "iconPath": "image/agree.png",
+                "selectedIconPath": "image/agree_fill.png",
+                "text": "Love"
             },
             {
-                "pagePath": "pages/logs/logs",
-                "iconPath": "image/billsunselected.png",
-                "selectedIconPath": "image/Bills.png",
-                "text": "记账"
-            },
-            {
-                "pagePath": "pages/Todo/Todo",
-                "text": "待办事项",
-                "iconPath": "image/todo-o.png",
-                "selectedIconPath": "image/Todo.png"
+                "pagePath": "pages/tools/index",
+                "text": "小工具",
+                "iconPath": "image/share.png",
+                "selectedIconPath": "image/share_fill.png"
             },
             {
                 "pagePath": "pages/Anniversary/Anniver",
-                "text": "纪念日",
-                "iconPath": "image/date.png",
-                "selectedIconPath": "image/date-selected.png"
+                "text": "我的",
+                "iconPath": "image/homepage.png",
+                "selectedIconPath": "image/homepage_fill.png"
             }
         ]
     },
