@@ -34,9 +34,45 @@ Page({
     onShow: function() {
         // 获取位置
         this.getLocation()
+        
+    this.getUserLocation();
+    const _locationChangeFn = res=> {
+      console.log('location change', res.latitude, res.longitude)
+    }
+    wx.onLocationChange(_locationChangeFn);
     },
     onShareTimeline() {},
-    onShareAppMessage() {},
+    onShareAppMessage() {}, 
+    getUserLocation() {
+      wx.getSetting({
+        success(res) {
+          console.log(res)
+          if (res.authSetting['scope.userLocationBackground']) {
+            wx.startLocationUpdateBackground({
+              success: (res) => {
+                console.log('startLocationUpdate-res', res)
+              },
+              fail: (err) => {
+                console.log('startLocationUpdate-err', err)
+              }
+            })
+          } else {
+            if (res.authSetting['scope.userLocation']==false) {
+              console.log('打开设置页面去授权')
+            } else {
+              wx.startLocationUpdateBackground({
+                success: (res) => {
+                  console.log('startLocationUpdate-res', res)
+                },
+                fail: (err) => {
+                  console.log('startLocationUpdate-err', err)
+                }
+              })
+            }
+          }
+        }
+      })
+    },
     getLocation: function() {
         var that = this
         wx.getLocation({
