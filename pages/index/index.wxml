@@ -1,11 +1,18 @@
 <!--index.wxml-->
-<view class='container'>
-<view class="city"  bindtap="getLocation">{{city}}</view>
-  <view class="memorial-love-day">我们认识的的第{{memorialDay.loveDay}}天</view>
-  <view class="memorial-meet-day">我们在一起的第{{memorialDay.meetDay}}天</view>
-  <swiper class="photo-swiper">
-    <swiper-item wx:for="{{photo}}" wx:key="item">
-      <image src="{{item.img}}" alt="" srcset=""></image>
-   </swiper-item>
-  </swiper>
+<view class="container container-fill">
+    <view class="city" data-from='tap'  bindtap="getLocation">{{city}}</view>
+    <view class="memorial-love-day">我们认识的的第{{memorialDay.loveDay}}天</view>
+    <view class="memorial-meet-day">我们在一起的第{{memorialDay.meetDay}}天</view>
+    <view class="my-info" bindtap="getMyInfo">关于我</view>
+    <!-- 个人类型的小程序不支持使用 -->
+    <web-view wx:if="{{websrc}}" src="{{websrc}}" bindmessage=""></web-view>       
+    <view class="scroll-fullpage" bindtouchstart="scrollTouchstart" bindtouchmove="scrollTouchmove" bindtouchend="scrollTouchend" style="transform:translateY(-{{scrollindex*100}}%);margin-top: {{margintop}}px">
+    <view class="section section01 {{scrollindex==index?'active':''}}" wx:for="{{photo}}" wx:key="item" >
+        <image src="{{item.img}}" alt="" srcset="" mode="widthFix"></image>
+      
+        <text class="section-maintitle" selectable="false" space="false" decode="false">
+            {{item.time}}
+        </text>
+    </view>
+ </view>
 </view>
