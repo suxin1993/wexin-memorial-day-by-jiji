@@ -1,6 +1,10 @@
 /**index.wxss**/
 
 
+page {
+    background-color: #ffffff;
+}
+
 .city {
     height: 20rpx;
     position: absolute;

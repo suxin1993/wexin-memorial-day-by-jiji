@@ -16,7 +16,8 @@
         "backgroundTextStyle": "light",
         "navigationBarBackgroundColor": "#fff",
         "navigationBarTitleText": "酥饼与吉吉",
-        "navigationBarTextStyle": "black"
+        "navigationBarTextStyle": "black",
+        "backgroundColor": "#ffffff"
     },
     "tabBar": {
         "list": [{
