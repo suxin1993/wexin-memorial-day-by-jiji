@@ -24,6 +24,10 @@ Page({
                 img: 'https://img.jijiandsu.store/jijiWexin/2021.07.26-zhounianjinianri.jpg',
                 time: '2021年07月26日【周年纪念日】'
             },
+            {
+                img: 'https://img.jijiandsu.store/jijiWexin/2021.10.03-shenzhenzijiayou.jpg',
+                time: '2021年10月03日【深圳自驾游】'
+            },
         ],
         scrollindex: 0, //当前页面的索引值
         totalnum: 4, //总共页面数
