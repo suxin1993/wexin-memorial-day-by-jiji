@@ -19,5 +19,8 @@
     <view class='proverb'>
       <text>Never put off until tomorrow what may be done today</text>
     </view>
+    <view class='proverb'>
+      <text bindtap='toUpload'>上传七牛</text>
+    </view>
   </view>
 </scroll-view>

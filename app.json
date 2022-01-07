@@ -4,6 +4,7 @@
         "pages/tools/index",
         "pages/Anniversary/Anniver",
         "pages/Anniversary/detailAnniver/detailAnniver",
+        "pages/tools/qiniu/index",
         "pages/Anniversary/newAnniver/newAnniver"
     ],
     "permission": {

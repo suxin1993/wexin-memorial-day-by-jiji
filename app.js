@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-09-13 18:53:38
- * @LastEditTime: 2021-09-29 16:13:46
+ * @LastEditTime: 2022-01-07 22:25:50
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /wexin-memorial-day-by-jiji/app.js
@@ -99,7 +99,7 @@ App({
     out_of_china: function(lng, lat) {
         return (lng < 72.004 || lng > 137.8347) || ((lat < 0.8293 || lat > 55.8271) || false);
     },
-    getLocationInfo: function(latitude, longitude, cb) {
+    getLocationInfo: function(latitude, longitude, cb, wgs) {
         var _this = this;
         // 引入 qq地图
         var QQMapWX = require('./utils/qqmap-wx-jssdk.min.js');
@@ -107,7 +107,13 @@ App({
         qqmapsdk = new QQMapWX({
             key: 'HEPBZ-V7UHK-YHBJ2-A7WUD-6O6DK-MPBNQ'
         });
-        // let location = _this.wgs84togcj02(latitude, longitude)
+        let lat = latitude
+        let log = longitude
+        if (wgs && wgs == "WGS84") {
+            let location = _this.wgs84togcj02(+longitude, +latitude)
+            lat = location[1]
+            log = location[0]
+        }
         qqmapsdk.reverseGeocoder({
             //位置坐标，默认获取当前位置，非必须参数
             /**
@@ -115,7 +121,7 @@ App({
              //String格式
               location: '39.984060,116.307520',
             */
-            location: `${latitude},${longitude}` || '', //获取表单传入的位置坐标,不填默认当前位置,示例为string格式
+            location: `${lat},${log}` || '', //获取表单传入的位置坐标,不填默认当前位置,示例为string格式
             //get_poi: 1, //是否返回周边POI列表：1.返回；0不返回(默认),非必须参数
             success: function(res) { //成功后的回调
                 console.log(res);
@@ -124,9 +130,7 @@ App({
                 //     content: res.result.address,
                 //     success(res) {
                 //         if (res.confirm) {
-                //             console.log('用户点击确定')
                 //         } else if (res.cancel) {
-                //             console.log('用户点击取消')
                 //         }
                 //     }
                 // })
@@ -155,9 +159,7 @@ App({
                 }, 2000)
                 console.error(error);
             },
-            complete: function(res) {
-                // console.log(res);
-            }
+            complete: function(res) {}
         })
     },
     getUserInfo: function(cb) {
@@ -201,16 +203,13 @@ App({
             success: function(res) {
                 fc(res.data)
             },
-            fail: function() {
-                console.log("fail")
-            }
+            fail: function() {}
         })
     },
     getLifestyleInfo: function(city, fc) {
         wx.request({
             url: "https://free-api.heweather.com/s6/weather/lifestyle?location=" + city + "&key=5a27e7497fb849729ced5631fe9260cd",
             success: function(res) {
-                console.log(res)
                 fc(res.data)
             }
         })
@@ -219,7 +218,6 @@ App({
         wx.request({
             url: "https://free-api.heweather.com/s6/weather/now?location=" + city + "&key=5a27e7497fb849729ced5631fe9260cd",
             success: function(res) {
-                console.log(res)
                 fc(res.data)
             }
         })

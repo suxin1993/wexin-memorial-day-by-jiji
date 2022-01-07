@@ -27,7 +27,6 @@ Page({
     },
     storageHistory: function() {
         var today = formatTime(new Date())
-        //console.log(today)
         var history = wx.getStorage({
             key: 'todoHistory',
             success: function(res) {},
@@ -35,7 +34,6 @@ Page({
         if (typeof history !== "object") {
             history = []
         }
-        console.log(history)
         if (history[0] === today) {
             history[1] = this.data.todoList
         } else {
@@ -50,8 +48,12 @@ Page({
     input: function(event) {
         this.setData({ todoinput: event.detail.value })
     },
+    toUpload: function(event) {
+        wx.navigateTo({
+            url: 'qiniu/index',
+        })
+    },
     toggleTodo: function(e) {
-        console.log(e)
         const todoId = e.currentTarget.dataset.todoId
         for (var i = 0; i < this.data.todoList.length; i++) {
             if (this.data.todoList[i].id === todoId) {

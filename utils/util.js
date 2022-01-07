@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-09-13 18:53:38
- * @LastEditTime: 2021-09-29 15:35:48
+ * @LastEditTime: 2022-01-07 21:53:36
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /wexin-memorial-day-by-jiji/utils/util.js
@@ -48,9 +48,33 @@ const formatTimeTwo = (value, type) => {
         }
     }
     return formatTime;
+
+}
+
+
+// 坐标转换 度°分′秒″转度
+function ToDigital(strDu, strFen, strMiao, len) {
+    len = (len > 6 || typeof(len) == "undefined") ? 6 : len; //精确到小数点后最多六位   
+    strDu = (typeof(strDu) == "undefined" || strDu == "") ? 0 : parseFloat(strDu);
+    strFen = (typeof(strFen) == "undefined" || strFen == "") ? 0 : parseFloat(strFen) / 60;
+    strMiao = (typeof(strMiao) == "undefined" || strMiao == "") ? 0 : parseFloat(strMiao) / 3600;
+    var digital = strDu + strFen + strMiao;
+    if (digital == 0) {
+        return "";
+    } else {
+        return digital.toFixed(len);
+    }
+}
+
+function reBackTime(vale) {
+    // yyyy-MM-dd HH:mm:ss
+    const Times = vale.split(' ')
+    return `${Times[0].replace(/:/, "-")} ${Times[1]}`
 }
 
 module.exports = {
     formatTime: formatTime,
     formatTimeTwo: formatTimeTwo,
+    ToDigital: ToDigital,
+    reBackTime: reBackTime,
 }

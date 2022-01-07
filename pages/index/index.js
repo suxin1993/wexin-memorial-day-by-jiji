@@ -14,18 +14,18 @@ Page({
         "websrc": '',
         'throttleTime': null,
         'photo': [{
-                img: 'https://img.jijiandsu.store/jijiWexin/2021.02.14-dinghunri.jpg',
+                img: 'http://imghunan.jijiandsu.store/jijiWexin/2021.02.14-dinghunri.jpg',
                 time: '2021年02月14日【订婚】'
             }, {
-                img: 'https://img.jijiandsu.store/jijiWexin/2021.05.30-hunshazhao.jpg',
+                img: 'http://imghunan.jijiandsu.store/jijiWexin/2021.05.30-hunshazhao.jpg',
                 time: '2021年05月30日【婚纱照】'
             },
             {
-                img: 'https://img.jijiandsu.store/jijiWexin/2021.07.26-zhounianjinianri.jpg',
+                img: 'http://imghunan.jijiandsu.store/jijiWexin/2021.07.26-zhounianjinianri.jpg',
                 time: '2021年07月26日【周年纪念日】'
             },
             {
-                img: 'https://img.jijiandsu.store/jijiWexin/2021.10.03-shenzhenzijiayou.jpg',
+                img: 'http://imghunan.jijiandsu.store/jijiWexin/2021.10.03-shenzhenzijiayou.jpg',
                 time: '2021年10月03日【深圳自驾游】'
             },
         ],
@@ -82,9 +82,7 @@ Page({
         const that = this
         wx.getSetting({
             success(res) {
-                console.log(res)
                 if (res.authSetting['scope.userLocationBackground']) {
-                    console.log('获取后台位置信息')
                     wx.startLocationUpdateBackground({
                         success: (res) => {
                             console.log('startLocationUpdate-res', res)
@@ -96,7 +94,6 @@ Page({
                 } else {
                     if (res.authSetting['scope.userLocation'] == false) {
                         // 获取位置
-                        console.log('打开设置页面去授权')
                         wx.startLocationUpdateBackground({
                             success: (res) => {
                                 console.log('startLocationUpdate-res', res)
@@ -107,7 +104,6 @@ Page({
                         })
                         that.getLocation()
                     } else {
-                        console.log('获取位置信息')
                         wx.startLocationUpdateBackground({
                             success: (res) => {
                                 console.log('startLocationUpdate-res', res)
