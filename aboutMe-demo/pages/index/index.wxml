@@ -1,0 +1,50 @@
+<view>
+	<image class="center_bg" mode='aspectFill' src='/images/bground.jpg'></image>
+	<view class="avatar-warp">
+         <button  class="avatar" wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+		<image wx:else class="avatar" mode='aspectFill'src="{{userInfo.avatarUrl}}" mode="cover"></image>
+		<view class="nickname">陈彬</view>
+		<view class="user-info">
+			<image src='/images/myPicture.png'></image>
+			171543113
+		</view>
+		<view class="article-info">
+			<view class="article-item">
+				<text class="num">22</text>
+				年龄
+			</view>
+			<view class="article-item">
+				<text class="num">男</text>
+				性别
+			</view>
+			<view class="article-item">
+				<text class="num">广东潮州</text>
+				城市
+			</view>
+		</view>
+	</view>
+	<view class="menu-warp" bind:tap="copytoCliboard">
+		<navigator>
+			<image class="icon" src='/images/csdn.png'></image>
+			获取我的博客
+			<image class="next" src='/images/right.png'></image>
+		</navigator>
+	</view>
+	<view class="menu-warp">
+		<navigator url='/pages/article/article?id=1'>
+			<image class="icon" src='/images/school.png'></image>
+			广东金融学院
+			<image class="next" src='/images/right.png'></image>
+		</navigator>
+	</view>
+
+	<audio  class="musicPlay" src="{{audioSrc}}" poster="{{audioPoster}}" name="{{audioName}}" author="{{audioAuthor}}" controls></audio>
+	<!-- <view style="display:flex;">
+		<button class="button"  bindtap="audioPlay">播放</button>
+		<button class="button"  bindtap="audioPause">暂停</button>
+		<button class="button"  bindtap="audio14">设置当前播放时间为14秒</button>
+		<button class="button"  bindtap="audioStart">回到开头</button>
+	</view> -->
+
+
+</view>

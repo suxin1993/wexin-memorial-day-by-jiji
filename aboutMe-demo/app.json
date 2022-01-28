@@ -1,0 +1,40 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/resume/resume",
+    "pages/photos/photos"
+  ],
+  "window":{
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "自我介绍",
+    "navigationBarTextStyle": "black"
+  },
+  
+  "tabBar": {
+    "color": "#999",
+    "selectedColor": "#02a1ef",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "/images/index.png",
+        "selectedIconPath": "/images/index_active.png"
+      },
+      {
+        "pagePath": "pages/resume/resume",
+        "text": "简历",
+        "iconPath": "/images/resume.png",
+        "selectedIconPath": "/images/resume_active.png"
+      },
+      {
+        "pagePath": "pages/photos/photos",
+        "text": "照片",
+        "iconPath": "/images/picture.png",
+        "selectedIconPath": "/images/picture_active.png"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
+}

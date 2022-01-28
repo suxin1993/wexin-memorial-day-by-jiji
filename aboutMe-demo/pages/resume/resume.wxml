@@ -1,0 +1,108 @@
+<view class="headbag">
+    <view class='margin-10'>
+        <view class="userinfo">
+         <button  class="userinfo-avatar" wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+          <image wx:else class="userinfo-avatar" src="{{userInfo.avatarUrl}}"mode="cover"></image>
+          <text class="userinfo-nickname">{{userinfo.nickName}}</text>
+      </view>
+    </view>
+    <view class='portrait'>
+      <view class='TrueName'>陈彬 (广州)</view>
+      <view class='describe'>
+        <view>广东金融学院 · 计科专业</view>
+        <view>男  |  22岁  | 2年开发经验  |  本科 </view>
+        <view bindtap='phonecall' data-mobile="17521015950">M. 13060868459 | E. 1501695397@qq.com</view>
+      </view>
+    </view>
+
+<view class='superiority'>
+  具有很强的团队精神，和良好的合作意识
+  </view>
+    <view class='clear'></view>
+
+
+<view class="flex-container">
+      <view class="flex-item flex-item1">
+          <image class='image' src='/images/resume/work.png'></image>
+      </view>
+      <view class="flex-item flex-item2">
+          <view class='ledtop'>
+              <view class='led'>广州·天河·广东金融学院</view>
+             
+              
+            <view class='clear'></view>
+
+            <view class='led'>------------------------------------</view>
+             
+              <view class='clear'></view>
+
+               <view class='led'>------------------------------------</view>
+            
+              
+              <view class='JobDescription'>
+               
+              </view>
+              <view class='clear'></view>
+
+          </view>
+
+      </view>
+</view>
+
+<view class="flex-container">
+      <view class="flex-item flex-item1">
+          <image class='image' src='/images/resume/Project.png'></image>
+      </view>
+      <view class="flex-item flex-item2">
+
+          <view class='ledtop'>
+             
+          </view>
+          <view class='clear'></view>
+
+         
+
+      </view>
+</view>
+
+<view class="flex-container">
+      <view class="flex-item flex-item1">
+          <image class='image' src='/images/resume/personal.png'></image>
+      </view>
+      <view class="flex-item flex-item2">
+          <view class='ledtop'>
+              <view class='JobDescription'>
+               
+              </view>
+          </view>
+      </view>
+</view>
+
+
+<view class="flex-container">
+      <view class="flex-item flex-item1">
+          <image class='image' src='/images/resume/self-description.png'></image>
+      </view>
+      <view class="flex-item flex-item2">
+          <view class='ledtop'>
+              <view class='JobDescription'>
+                
+              </view>
+          </view>
+      </view>
+</view>
+
+  <view class='clear'></view>
+      <view class='employment'>
+     
+          <text>
+          博客：https://blog.csdn.net/weixin_42061487
+          GitHub: https://github.com/cbcb5652
+          </text>
+      </view>
+
+<view class='clear'></view>
+
+<view class='end'></view>
+
+</view>
