@@ -1,0 +1,338 @@
+page{
+  font-family: sans-serif;
+  background-color: #dff9fb;
+  -webkit-overflow-scrolling: touch;
+}
+.container{
+  width: 100%;
+  height: 100vh;
+}
+
+/* 遮罩层 */
+
+.cover{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.8);
+  z-index: 2;
+}
+
+
+/* 首屏上部分区域-------------- */
+.container .container-top{
+  width: 100%;
+  height: 80%;
+  display: flex;
+  align-items:center;
+  flex-direction: column;
+  color: #000;
+}
+
+
+/* 位置信息--------------------------- */
+.container-top .location{
+  flex: 2;
+  margin-top: 90rpx;
+  font-size: 48rpx;
+  text-align: center;
+}
+
+.update-time{
+  margin-top: 18rpx;
+  font-size: 24rpx;
+  text-align: center;
+}
+
+.dibiao {
+  margin-right: 20rpx;
+}
+/* 天气详情--------------------------------- */
+.container-top .weather{
+  flex: 4;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+/* 温度--------------------- */
+.weather .wea-temperature{
+  font-size: 120rpx;
+  height: 120rpx;
+  line-height: 120rpx;
+}
+
+/* 天气状况--------------------- */
+.weather .wea-conditions{
+  font-size: 40rpx;
+  height: 120rpx;
+  line-height: 120rpx;
+}
+
+
+/* 空气质量---------------------- */
+.weather .wea-air{
+  font-size: 26rpx;
+  vertical-align: middle;
+  background-color: #F79F1F;
+  color: #fff;
+  padding: 3rpx 10rpx;
+  border-radius: 3px;
+}
+
+/* 风力------------------------------ */
+.weather .wea-wind,
+.weather .wea-hum{
+  font-size: 26rpx;
+}
+
+
+/* 温馨提示-------------------------------- */
+.container-top .tips{
+  flex: 3;
+  width: 70%;
+  text-align: center;
+}
+
+.tips .tips-content{
+  font-size: 30rpx;
+  line-height: 50rpx;
+}
+
+
+/* 今天和明天天气样式--------------------------- */
+.container .weather-info{
+  display: flex;
+  justify-content: space-between;
+  background-color: #fff;
+  box-shadow: 0 1px 8rpx #ccc;
+}
+
+.weather-info .weather-info-day{
+  width: 50%;
+  height: 134rpx;
+  display: flex;
+  justify-content: space-around;
+  box-sizing: border-box;
+  margin: 40rpx 0;
+  padding: 0 20rpx;
+  border-right: 1px solid #ccc; 
+}
+
+.weather-info .weather-info-left{
+  flex: 8;
+  display: flex;
+  flex-direction: column;
+  font-size: 32rpx;
+  margin-right: 20rpx;
+}
+
+.weather-info-left .day-con{
+  margin-bottom: 20rpx;
+}
+
+.weather-info .weather-info-right{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 20rpx;
+}
+
+.weather-info-right .day-t{
+  font-size: 26rpx
+}
+
+
+/* 下半页面样式---------------------- */
+
+/* 逐小时天气样式--------------------------- */
+.weather-hours {
+  background: #fff;
+  padding: 0 0 0 20rpx;
+  width: 100%;
+  white-space: nowrap;
+  box-sizing: border-box;
+  box-shadow: 0 1px 8rpx #ccc;
+}
+
+.weather-hours  .weather-hours-group {
+  width: 100rpx;
+  height: 220rpx;
+  display: inline-block;
+  margin-right: 50rpx;
+}
+
+.weather-hours  .weather-hours-list{
+  display: flex;
+  flex-direction: column;
+  font-size: 24rpx;
+  text-align: center;
+  padding: 20rpx 0;
+  position: relative;
+}
+
+.pop{
+  position: absolute;
+  top:66rpx;
+  left:34rpx;
+  font-size:20rpx;
+}
+
+.weather-hours-list .iconfont{
+  margin: 40rpx 0 10rpx 0 ;
+  font-size: 60rpx;
+}
+
+/* 一周天气情况---------------------- */
+
+.weather-data{
+  width: 100%;
+  background-color: #fff;
+  margin-top: 26rpx;
+  box-shadow: 0 1px 8rpx #ccc;
+}
+
+.weather-data .weather-data-group{
+  display: inline-block;
+  height: 100%;
+  width: 16.6%;
+  transition: 0.5s;
+}
+.weather-data .weather-data-group:hover{
+  background-color: rgba(0,0,0,0.2);
+}
+.weather-data-group .weather-data-list{
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  padding: 40rpx 20rpx;
+  text-align: center;
+}
+
+.weather-data-list .data-con,
+.weather-data-list .data-num,
+.weather-data-list .data-speed
+{
+  margin-bottom: 10rpx;
+  font-size: 24rpx;
+}
+  
+
+.weather-data-list .data-speed{
+  overflow: hidden;
+  height: 32rpx;
+}
+
+.weather-data-list .data-wea{
+  margin: 20rpx 0 6rpx 0;
+  font-size: 26rpx;
+  height: 66rpx;
+}
+
+.weather-data-list .iconfont{
+  margin:4rpx 0; 
+  font-size: 54rpx;
+}
+
+/* 未来几天的温度------------------ */
+.data-T{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 170rpx;
+  position: relative;
+  font-size: 22rpx;
+  text-align: center;
+}
+
+.data-T .maxT{
+  position: absolute;
+  /* top: 0rpx; */
+  color: #f39c12;
+  transform: translateY(20rpx);
+}
+
+.data-T .maxT::after{
+  content: "";
+  position: absolute;
+  top: 40rpx;
+  left: 14rpx;
+  width: 14rpx;
+  height: 14rpx;
+  border-radius:50%;
+  background-color:#f39c12;  
+}
+
+.data-T .minT{
+  /* position: absolute; */
+  /* bottom: 0rpx; */
+  color: #3498db;
+}
+
+.data-T .minT::after{
+  content: "";
+  position: absolute;
+  top: -26rpx;
+  left: 14rpx;
+  width: 14rpx;
+  height: 14rpx;
+  border-radius:50%;
+  background-color:#3498db;  
+}
+
+/* 未来几天的风力 */
+
+.weather-data-list .data-wind{
+  margin-top: 10rpx;
+  margin-bottom:10rpx;
+  font-size: 28rpx; 
+}
+
+
+/* 生活贴士-------------- */
+.weather-life{
+  width: 100%;
+  margin-top: 26rpx;
+  box-shadow: 0 1px 8rpx #ccc;
+  display: flex;
+  flex-wrap:wrap; 
+  justify-content: space-around;
+  background-color: #fff;
+}
+
+.weather-life .weather-life-group{
+  width: 187rpx;
+  height: 180rpx;
+  box-sizing: border-box;
+  border-right: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+
+.weather-life-group .weather-life-list{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  padding: 30rpx
+}
+
+.weather-life-list .iconfont{
+  font-size: 58rpx;
+  margin: 0 0 10rpx 0;
+}
+
+.weather-life-list .life-level{
+  font-size: 24rpx;
+}
+
+.weather-life-list .life-title{
+  font-size: 22rpx;
+  color: #777;
+}

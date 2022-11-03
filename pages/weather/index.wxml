@@ -1,0 +1,86 @@
+<view class='container'>
+  <view class='cover' style='visibility:{{visibility}}' catchtouchmove="myCatchTouch">
+    <text class='iconfont suozi' bindtap='openSet'></text>
+  </view>
+  <view class='container-top {{backImg}}'>
+    <view class='location' bindtap='changePlace'>
+      <text class='iconfont dibiao'></text>
+      <text class='location-place'>{{locationUrban}} {{locationArea}}</text>
+      <view class='update-time'>上次更新时间 {{updateTime}}</view>
+    </view>
+    <view class='weather'>
+      <text class='wea-temperature'>{{temperature}}℃</text>
+      <text class='wea-conditions'>{{conditions}} | <text class='wea-air'>空气 {{air}}</text></text>
+      <text class='wea-wind'>{{wind}} {{num}}级</text>
+      <text class='wea-hum'>湿度 {{humidity}}%</text>
+    </view>
+    <view class='tips'>
+      <text class='tips-content'>{{content}}</text>
+    </view>
+    <view>
+         <text>昨日：{{cityAddNumber.yes_confirm_add}}无：{{cityAddNumber.yes_wzz_add}}</text> 
+    </view>
+  </view>
+  <view class='weather-info'>
+    <view class='weather-info-day'>
+      <view class='weather-info-left'>
+        <text class='today day-con'>今天</text>
+        <text class='today-weather day-wea'>{{todayWea}}</text>
+      </view>
+      <view class='weather-info-right'>
+        <text class='today-temperature day-t'>{{todayTem1}}℃~{{todayTem2}}℃</text>
+        <text class='iconfont iconsize {{todayIcon}}'></text>
+      </view>
+    </view>
+    <view class='weather-info-day'>
+      <view class='weather-info-left'>
+        <text class='tomorrow day-con'>明天</text>
+        <text class='tomorrow-weather day-wea'>{{tomorrowWea}}</text>
+      </view>
+      <view class='weather-info-right'>
+        <text class='tomorrow-temperature day-t'>{{tomorrowTem1}}℃~{{tomorrowTem2}}℃</text>
+        <text class='iconfont iconsize {{tomorrowIcon}}'></text>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class='container' wx:if="{{getlocation}}">
+  <view class='weather-hours'>
+    <scroll-view scroll-x >
+      <view wx:for="{{hours}}" id='{{item.id}}' class='weather-hours-group' wx:key="item">
+        <view class='weather-hours-list'>
+          <text>{{item.hour}}</text>
+          <text class='pop' wx-if="{{item.hourIcon === 'yu' && item.pop >= 55}}" >{{item.pop}}%</text>
+          <text class='iconfont iconsize {{item.hoursIcon}}'></text>
+          <text>{{item.hourT}}℃</text>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+  <view class='weather-data'>
+    <view class='weather-data-group' wx:for="{{weatherData}}" wx:key="item">
+      <view class='weather-data-list'>
+        <text class="data-con">{{item.day}}</text>
+        <text class="data-num">{{item.date}}</text>
+        <text class="data-wea">{{item.wea}}</text>
+        <text class='iconfont iconsize {{item.wea_img}}'></text>
+        <view class='data-T'>
+          <text class='maxT' style="position:absolute; top:{{-item.tem1P*6 }}rpx;">{{item.tem1}}℃</text>
+          <text class='minT' style="position:absolute; bottom: {{item.tem2P * 6 }}rpx;">{{item.tem2}}℃</text>
+        </view>
+        <text class="data-wind">{{item.win}}</text>
+        <text class="data-speed">{{item.win_speed}}级</text>
+      </view>
+    </view>
+  </view>
+  <view class='weather-life'>
+    <view class='weather-life-group' wx:for ="{{weatherLife}}" wx:key="item">
+      <view class='weather-life-list'>
+        <text class='iconfont {{item.lifeIcon}}'></text>
+        <text class='life-level'>{{item.lifeLevel}}</text>
+        <text class='life-title'>{{item.lifeTitle}}</text>
+      </view>
+    </view>
+  </view>
+</view>
