@@ -48,11 +48,11 @@ Page({
     input: function(event) {
         this.setData({ todoinput: event.detail.value })
     },
-    toUpload: function(event) {
-        wx.navigateTo({
-            url: 'qiniu/index',
-        })
-    },
+    // toUpload: function(event) {
+    //     wx.navigateTo({
+    //         url: 'qiniu/index',
+    //     })
+    // },
     toggleTodo: function(e) {
         const todoId = e.currentTarget.dataset.todoId
         for (var i = 0; i < this.data.todoList.length; i++) {

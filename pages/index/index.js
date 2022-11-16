@@ -1,33 +1,69 @@
 //index.js
 //获取应用实例
-import {
-    formatTimeTwo
-} from "../../utils/util.js"
+import { formatTimeTwo, ToDigital, reBackTime } from '../../utils/util.js'
+const myexif = require('../../utils/myexif.js')
 const app = getApp()
 Page({
     data: {
-        'memorialDay': {
-            "meetDay": 0,
-            "loveDay": 0,
+        memorialDay: {
+            meetDay: 0,
+            loveDay: 0,
         },
-        'city': "",
-        "websrc": '',
-        'throttleTime': null,
-        'photo': [{
-                img: 'http://imghunan.jijiandsu.store/jijiWexin/2021.02.14-dinghunri.jpg',
-                time: '2021年02月14日【订婚】'
-            }, {
-                img: 'http://imghunan.jijiandsu.store/jijiWexin/2021.05.30-hunshazhao.jpg',
-                time: '2021年05月30日【婚纱照】'
-            },
+        city: '',
+        websrc: '',
+        throttleTime: null,
+        // TODO: 需要删除的
+        selfTest: [
             {
-                img: 'http://imghunan.jijiandsu.store/jijiWexin/2021.07.26-zhounianjinianri.jpg',
-                time: '2021年07月26日【周年纪念日】'
+                img: 'https://jijiandsu.store/suben/picture/photo/suben-avatar.jpg',
+                time: '2022年10月04日 结婚',
             },
-            {
-                img: 'http://imghunan.jijiandsu.store/jijiWexin/2021.10.03-shenzhenzijiayou.jpg',
-                time: '2021年10月03日【深圳自驾游】'
-            },
+        ],
+        photo: [
+            // {
+            //     img: 'http://imghunan.jijiandsu.store/jijiWexin/2021.02.14-dinghunri.jpg',
+            //     time: '2020年07月26日【我们在一起了】',
+            // },
+            // {
+            //     img: 'http://imghunan.jijiandsu.store/jijiWexin/2021.10.03-shenzhenzijiayou.jpg',
+            //     time: '2020年09月27日【第一次旅游】',
+            // },
+            // {
+            //     img: 'http://imghunan.jijiandsu.store/jijiWexin/2021.10.03-shenzhenzijiayou.jpg',
+            //     time: '2020年11月27日【在一起的第100天】',
+            // },
+            // {
+            //     img: 'http://imghunan.jijiandsu.store/jijiWexin/2021.02.14-dinghunri.jpg',
+            //     time: '2021年02月14日【订婚】',
+            // },
+            // {
+            //     img: 'http://imghunan.jijiandsu.store/jijiWexin/2021.05.30-hunshazhao.jpg',
+            //     time: '2021年05月30日【婚纱照】',
+            // },
+            // {
+            //     img: 'http://imghunan.jijiandsu.store/jijiWexin/2021.05.30-hunshazhao.jpg',
+            //     time: '2021年09月29日【婚纱照】',
+            // },
+            // {
+            //     img: 'http://imghunan.jijiandsu.store/jijiWexin/2021.07.26-zhounianjinianri.jpg',
+            //     time: '2021年07月26日【周年纪念日】',
+            // },
+            // {
+            //     img: 'http://imghunan.jijiandsu.store/jijiWexin/2021.10.03-shenzhenzijiayou.jpg',
+            //     time: '2021年10月03日【深圳自驾游】',
+            // },
+            // {
+            //     img: 'https://jijiandsu.store/suben/picture/photo/2022.05.21-11%E6%97%B658%E5%88%8603%E7%A7%92-pe[%E8%87%AA%E6%8B%8D-%E7%B2%9F%E6%96%8C]-ad[%E5%B9%BF%E4%B8%9C%E7%9C%81%E6%B7%B1%E5%9C%B3%E5%B8%82%E7%BD%97%E6%B9%96%E5%8C%BA%E5%8D%97%E6%B9%96%E8%A1%97%E9%81%93%E7%BD%97%E6%B9%96(%E5%9C%B0%E9%93%81%E7%AB%99)%E6%B7%B1%E5%9C%B3%E7%AB%99%E4%B8%9C%E5%B9%BF%E5%9C%BA]-[OPPO-OPPOReno45G].jpg',
+            //     time: '2022年05月21日 求婚',
+            // },
+            // {
+            //     img: 'https://jijiandsu.store/suben/picture/photo/2022.05.21-11%E6%97%B658%E5%88%8603%E7%A7%92-pe[%E8%87%AA%E6%8B%8D-%E7%B2%9F%E6%96%8C]-ad[%E5%B9%BF%E4%B8%9C%E7%9C%81%E6%B7%B1%E5%9C%B3%E5%B8%82%E7%BD%97%E6%B9%96%E5%8C%BA%E5%8D%97%E6%B9%96%E8%A1%97%E9%81%93%E7%BD%97%E6%B9%96(%E5%9C%B0%E9%93%81%E7%AB%99)%E6%B7%B1%E5%9C%B3%E7%AB%99%E4%B8%9C%E5%B9%BF%E5%9C%BA]-[OPPO-OPPOReno45G].jpg',
+            //     time: '2022年09月28日 领婚纱照',
+            // },
+            // {
+            //     img: 'https://jijiandsu.store/suben/picture/photo/2022.05.21-11%E6%97%B658%E5%88%8603%E7%A7%92-pe[%E8%87%AA%E6%8B%8D-%E7%B2%9F%E6%96%8C]-ad[%E5%B9%BF%E4%B8%9C%E7%9C%81%E6%B7%B1%E5%9C%B3%E5%B8%82%E7%BD%97%E6%B9%96%E5%8C%BA%E5%8D%97%E6%B9%96%E8%A1%97%E9%81%93%E7%BD%97%E6%B9%96(%E5%9C%B0%E9%93%81%E7%AB%99)%E6%B7%B1%E5%9C%B3%E7%AB%99%E4%B8%9C%E5%B9%BF%E5%9C%BA]-[OPPO-OPPOReno45G].jpg',
+            //     time: '2022年10月04日 结婚',
+            // },
         ],
         scrollindex: 0, //当前页面的索引值
         totalnum: 4, //总共页面数
@@ -36,17 +72,17 @@ Page({
         critical: 100, //触发翻页的临界值
         margintop: 0, //滑动下拉距离
     },
-    onLoad: function() {
+    onLoad: function () {
         // 分享朋友圈
         wx.showShareMenu({
             withShareTicket: true,
-            menus: ['shareAppMessage', 'shareTimeline']
+            menus: ['shareAppMessage', 'shareTimeline'],
         })
         // 获取我们的纪念日
         this.getNowDate()
         // 先判断本地是否有
         if (!wx.getStorageSync('userInfo')) {
-            app.getUserInfo(function(data) {
+            app.getUserInfo(function (data) {
                 wx.setStorageSync('userInfo', data)
             })
         } else {
@@ -61,11 +97,11 @@ Page({
         //         clearTimeout(this.throttleTime)
         //         this.throttleTime = null
         //     }
-        //     this.throttleTime = setTimeout(() => { app.getLocationInfo(res.latitude, res.longitude, this.getBadiu) }, 2000);
+        //     this.throttleTime = setTimeout(() => { app.getLocationInfo(res.latitude, res.longitude, this.getCityOnShow) }, 2000);
         // }
         // wx.onLocationChange(_locationChangeFn);
     },
-    onShow: function() {
+    onShow: function () {
         // 获取位置
         setTimeout(() => {
             this.getLocation()
@@ -73,12 +109,22 @@ Page({
     },
     onHide() {
         this.setData({
-            "websrc": ""
+            websrc: '',
         }) // 小程序退出时，将变量置为初始值
     },
-    onShareTimeline() {},
-    onShareAppMessage() {},
-    getUserLocation: function() {
+    onShareTimeline() {
+        return {
+            title: '我们的纪念日',
+            imageUrl: 'http://imghunan.jijiandsu.store/jijiWexin/2021.02.14-dinghunri.jpg',
+        }
+    },
+    onShareAppMessage() {
+        return {
+            title: '我们的纪念日',
+            imageUrl: 'http://imghunan.jijiandsu.store/jijiWexin/2021.02.14-dinghunri.jpg',
+        }
+    },
+    getUserLocation: function () {
         const that = this
         wx.getSetting({
             success(res) {
@@ -89,7 +135,7 @@ Page({
                         },
                         fail: (err) => {
                             console.log('startLocationUpdate-err', err)
-                        }
+                        },
                     })
                 } else {
                     if (res.authSetting['scope.userLocation'] == false) {
@@ -100,7 +146,7 @@ Page({
                             },
                             fail: (err) => {
                                 console.log('startLocationUpdate-err', err)
-                            }
+                            },
                         })
                         that.getLocation()
                     } else {
@@ -110,23 +156,22 @@ Page({
                             },
                             fail: (err) => {
                                 console.log('startLocationUpdate-err', err)
-                            }
+                            },
                         })
                         that.getLocation()
                     }
                 }
-            }
+            },
         })
     },
-    getLocation: function(e) {
-
-        var that = this
+    getLocation: function (e) {
+        let that = this
         wx.getLocation({
             type: 'gcj02',
-            success: function(res) {
+            success: function (res) {
                 var longitude = res.longitude
                 var latitude = res.latitude
-                app.getLocationInfo(latitude, longitude, that.getBadiu)
+                app.getLocationInfo(latitude, longitude, that.getCityOnShow)
                 if (e && e.currentTarget.dataset.from == 'tap') {
                     wx.openLocation({
                         latitude: latitude, // 纬度，范围为-90~90，负数表示南纬
@@ -134,99 +179,121 @@ Page({
                         scale: 28, // 缩放比例
                     })
                 }
-            }
+            },
         })
     },
-    getMyInfo: function() {
-        this.setData({
-            "websrc": "https://www.jijiandsu.store/"
-        })
+    getMyInfo: function () {
+        // this.setData({
+        //     "websrc": "https://www.jijiandsu.store/"
+        // })
+        // 去我的简历页面
     },
-
-    async getBadiu(res, _this) {
-        // 是在app页面调用，直接用this
-        // 非app页面调用，用getApp() 
-        let today = formatTimeTwo(new Date())
+    getCityOnShow(res, _this) {
         // 获取城市
         this.setData({
             city: res.city,
         })
-        // 获取设备信息
-        const modelInfo = wx.getSystemInfoSync()
-        const { networkType } = await wx.getNetworkType()
-        _this.mtj.trackEvent('event_location', {
-            location_address: `[${today}]time-[${_this.globalData.userInfo.nickName||'未知用户信息'}]user-[${modelInfo.system||'未知系统'}]system-[${modelInfo.model||'未知机型'}]model-[${networkType||'未知信号'}]networkType-${res.location_address}`,
-            nick_name: _this.globalData.userInfo.nickName || '未知用户信息',
-        });
-        // getApp().mtj.trackEvent('event_location', {
-        //     location_address: '',
-        //     nick_name: '',
-        // })
-        // app.getWeatherInfo(that.data.city, function(data) {
-        //     that.setData({
-        //         weatherInfo: data.HeWeather6[0].daily_forecast
-        //     })
-        // })
-        // app.getLifestyleInfo(that.data.city, function(data) {
-        //     that.setData({
-        //         lifestyle: data.HeWeather6[0].lifestyle
-        //     })
-        // })
-        // app.getCurWeatherInfo(that.data.city, function(data) {
-        //     that.setData({
-        //         curWeather: data.HeWeather6[0].now
-        //     })
-        // })
+        app.getBadiu(res, _this)
     },
-    bindChange: function(e) {},
-    getNowDate: function(e) {
+    getPhotoAdress(res) {
+        console.error(res.location_address)
+        this.setData({
+            city: res.location_address,
+        })
+    },
+    getButton: function (e) {
+        let self = this
+        console.error(self.data.selfTest[0].img)
+        wx.getImageInfo({
+            src: self.data.selfTest[0].img,
+            success: function (res) {
+                console.log(res.width)
+                console.log(res.height)
+                console.log(res.path)
+                const fs = wx.getFileSystemManager()
+                fs.readFile({
+                    filePath: res.path,
+                    success(resq) {
+                        let fileInfo = resq.data
+                        var exifInfo = myexif.handleBinaryFile(fileInfo)
+                        console.log('打印exif信息')
+                        console.log(exifInfo)
+                        let { GPSLatitude, GPSLongitude } = exifInfo.data
+                        console.log(GPSLatitude)
+                        console.log(GPSLongitude)
+                        app.getLocationInfo(
+                            ToDigital(
+                                GPSLatitude[0].numerator / GPSLatitude[0].denominator,
+                                GPSLatitude[1].numerator / GPSLatitude[1].denominator,
+                                GPSLatitude[2].numerator / GPSLatitude[2].denominator
+                            ),
+                            ToDigital(
+                                GPSLongitude[0].numerator / GPSLongitude[0].denominator,
+                                GPSLongitude[1].numerator / GPSLongitude[1].denominator,
+                                GPSLongitude[2].numerator / GPSLongitude[2].denominator
+                            ),
+                            self.getPhotoAdress,
+                            'WGS84'
+                        ) //GPS坐标
+                        let PhotoDate = formatTimeTwo(new Date(reBackTime(exifInfo.data.DateTimeOriginal)).valueOf(), 'yyyy.MM.dd-hh时mm分ss秒')
+                        console.error(PhotoDate)
+                    },
+                    fail(res) {
+                        console.error(res)
+                    },
+                })
+            },
+        })
+    },
+    bindChange: function (e) {},
+    getNowDate: function (e) {
         let todayDate = new Date().valueOf()
         let loveDay = new Date('2017-10-21').valueOf()
-        let meetDay = new Date("2020-07-26").valueOf()
+        let meetDay = new Date('2020-07-26').valueOf()
         meetDay = Math.floor((todayDate - meetDay) / 86400000)
         loveDay = Math.floor((todayDate - loveDay) / 86400000)
         this.setData({
-            "memorialDay": {
-                "meetDay": meetDay,
-                "loveDay": loveDay,
-            }
+            memorialDay: {
+                meetDay: meetDay,
+                loveDay: loveDay,
+            },
         })
     },
     //滑动加载start
-    scrollTouchstart: function(e) {
-        let py = e.touches[0].pageY;
+    scrollTouchstart: function (e) {
+        let py = e.touches[0].pageY
         this.setData({
-            starty: py
+            starty: py,
         })
     },
-    scrollTouchmove: function(e) {
-        let py = e.touches[0].pageY;
-        let d = this.data;
+    scrollTouchmove: function (e) {
+        let py = e.touches[0].pageY
+        let d = this.data
         this.setData({
             endy: py,
         })
         if (py - d.starty < 100 && py - d.starty > -100) {
             this.setData({
-                margintop: py - d.starty
+                margintop: py - d.starty,
             })
         }
     },
-    scrollTouchend: function(e) {
-        let d = this.data;
+    scrollTouchend: function (e) {
+        let d = this.data
         if (d.endy - d.starty > 100 && d.scrollindex > 0) {
             this.setData({
-                scrollindex: d.scrollindex - 1
+                scrollindex: d.scrollindex - 1,
             })
         } else if (d.endy - d.starty < -100 && d.scrollindex < this.data.photo.length - 1) {
             //this.data.photo.length //总共页面数
             this.setData({
-                scrollindex: d.scrollindex + 1
+                scrollindex: d.scrollindex + 1,
             })
         }
         this.setData({
             starty: 0,
             endy: 0,
-            margintop: 0
+            margintop: 0,
         })
     },
     //滑动加载end
