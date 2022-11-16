@@ -1,0 +1,33 @@
+<view class='top'>
+
+  <view class='avar'>
+    <image src='{{avatarUrl}}'></image>
+  </view>
+
+  <text class='nickname'>{{nickName}}</text>
+
+  <view class="top-txt">
+    <text>国家：{{countryNum}}</text>
+    <text>省份：{{proNum}}</text>
+    <text>城市：{{cityNum}}</text>
+  </view>
+
+</view>
+
+<view class='achievement'>
+  <view wx:for='{{achievement}}' class='achievement-box'>
+    <image wx:if="{{item.status}}" src='{{item.icon_up}}' class='left'></image>
+    <image wx:if="{{!item.status}}" src='{{item.icon_down}}' class='left'></image>
+    <view class='left'>{{item.name}}</view>
+  </view>
+</view>
+
+<view class='footer'>
+  <navigator bindtap='feedback' hover-class='changestyle'>
+    <text style="margin-right:10rpx">产品反馈</text>
+  </navigator>
+  <text style="margin-top:5rpx">|</text>
+  <navigator url='guanyuwomen/guanyuwomen' hover-class='changestyle'>
+    <text style="margin-left:10rpx">关于我们?</text>
+  </navigator>
+</view>

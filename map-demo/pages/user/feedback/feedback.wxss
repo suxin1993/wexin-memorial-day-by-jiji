@@ -1,0 +1,73 @@
+input {
+  border:1px solid gray;
+  width: 60%;
+  border-radius: 8rpx;
+}
+
+.question {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 25rpx;
+  margin-top: 50rpx;
+}
+
+.contact {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.font {
+  font-size: 25rpx;
+  margin-left: 15rpx;
+}
+
+.detail {
+  margin-top: 40rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.test{
+  padding: 15rpx;
+}
+
+textarea {
+  width: 85%;
+  border: 1px gray solid;
+  border-radius: 8rpx;
+  height: 400rpx;
+}
+
+.upload image {
+  width: 200rpx;
+  height: 200rpx;
+}
+
+.upload {
+  display: flex;
+  flex-direction: row;
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
+}
+
+.img {
+  width: 200rpx;
+  padding-left: 5%;
+  height: 200rpx;
+}
+
+.buttonstyle {
+  margin-top: 30rpx;
+  width: 90%;
+}
+
+
+.weui-textarea-counter {
+  color: #b3b3b3;
+  font-size: 14px;
+  margin-top: 10rpx;
+  margin-left: 490rpx;
+}

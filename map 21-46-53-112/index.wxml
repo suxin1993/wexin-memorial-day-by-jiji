@@ -1,0 +1,10 @@
+<scroll-view scroll-y="true">
+
+  <view class='todoList'>
+   
+    <view class='proverb'>
+      <text>Never put off until tomorrow what may be done today</text>
+    </view>
+ 
+  </view>
+</scroll-view>
