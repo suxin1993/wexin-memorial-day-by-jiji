@@ -12,6 +12,7 @@
         }
     },
     "requiredBackgroundModes": ["location"],
+    "requiredPrivateInfos": ["getLocation"],
     "window": {
         "backgroundTextStyle": "light",
         "navigationBarBackgroundColor": "#fff",

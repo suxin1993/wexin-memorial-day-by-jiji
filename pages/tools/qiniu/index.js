@@ -1,20 +1,18 @@
 const app = getApp()
-const token = require('../../../utils/qiniu/qntoken.js')
-const qiniuUploader = require("../../../utils/qiniu/qiniuUploader.js");
-const qiniudelete = require('../../../utils/qiniu/qianniudelete.js')
-const myexif = require('../../../utils/myexif.js');
-import { formatTimeTwo, ToDigital, reBackTime } from "../../../utils/util.js"
+// const token = require('../../../utils/qiniu/qntoken.js')
+// const qiniuUploader = require("../../../utils/qiniu/qiniuUploader.js");
+// const qiniudelete = require('../../../utils/qiniu/qianniudelete.js')
+// const myexif = require('../../../utils/myexif.js');
+// import { formatTimeTwo, ToDigital, reBackTime } from "../../../utils/util.js"
 Page({
     data: {
         url: 'http://q3hsi9s02.bkt.clouddn.com/tmp/touristappid.o6zAJs9PGSG4t0J-RnpDxkuKxbWw.8xVI1cVSSOmD9a7323c4f2e3b204e02d6aede131281a.png',
         tokendata: [], //建议云函数获取处理、、测试时可直接写
         uptoken: '', //上传凭证
         time: Date.parse(new Date()), //时间截
-        dress: "无GPS"
+        dress: '无GPS',
     },
-    onLoad: function() {
-
-    },
+    onLoad: function () {},
 
     //测试获取token按钮
     testgettoken() {
@@ -26,24 +24,27 @@ Page({
         this.data.tokendata = tokendata
         var uptoken = token.token(tokendata)
         this.setData({
-            uptoken: uptoken
+            uptoken: uptoken,
         })
     },
 
     //测试删除按钮
     dele() {
         var sendtokendata = this.data.tokendata //提前配置
-        sendtokendata.filename = this.data.url; //删除用的
+        sendtokendata.filename = this.data.url //删除用的
         qiniudelete.delet(sendtokendata) //调用删除
         this.setData({
             url: this.data.url,
-            time: Date.parse(new Date())
+            time: Date.parse(new Date()),
         })
     },
 
     //测试批量删除
     batchdele() {
-        var file_Name = ['http://s02.bkt.clouddn.com/tmp/wx9eakuKxbWw.85Ic4XUa06103e01320.jpg', 'http://02.bkt.clouddn.com/tmp/wx9ea6e64enpDxkuKxbWw.8BwWCdMtm6hj4d8d0e47ff1de050c814f7.jpg'] //数据删除了写填你的
+        var file_Name = [
+            'http://s02.bkt.clouddn.com/tmp/wx9eakuKxbWw.85Ic4XUa06103e01320.jpg',
+            'http://02.bkt.clouddn.com/tmp/wx9ea6e64enpDxkuKxbWw.8BwWCdMtm6hj4d8d0e47ff1de050c814f7.jpg',
+        ] //数据删除了写填你的
 
         this.data.tokendata.fileName = file_Name
 
@@ -60,11 +61,11 @@ Page({
         let addInforesp = this.dress
 
         var qiniuTask = wx.uploadFile({
-            url: "https://upload-z2.qiniup.com",
+            url: 'https://upload-z2.qiniup.com',
             filePath: upFile, //chooseImage上传的图片,是一个临时路径
-            name: "file",
+            name: 'file',
             header: {
-                "Content-Type": "multipart/form-data"
+                'Content-Type': 'multipart/form-data',
             },
             formData: {
                 key: `image/fromWexin/${PhotoDate}-ad[${addInforesp}].jpg`,
@@ -75,9 +76,9 @@ Page({
                 console.log(res)
                 wx.hideLoading()
             },
-            file: res => {
+            file: (res) => {
                 console.log(res)
-            }
+            },
         })
         qiniuTask.onProgressUpdate((progress) => {
             console.error(progress)
@@ -134,7 +135,7 @@ Page({
         }
         return new Promise((resolve, reject) => {
             this.setData({
-                uptoken: uptoken
+                uptoken: uptoken,
             })
             resolve('ok')
         })
@@ -151,8 +152,8 @@ Page({
             this.testgettoken()
         }
         var sendtokendata = this.data.tokendata
-        sendtokendata.filename = that.data.url; //删除用
-        that.dress = "无GPS"
+        sendtokendata.filename = that.data.url //删除用
+        that.dress = '无GPS'
         qiniudelete.delet(sendtokendata) //调用删除
 
         var tempimageurl = ''
@@ -160,20 +161,33 @@ Page({
             count: 1, //选一个图
             sizeType: ['original'], //原图压缩图
             sourceType: ['album', 'camera'], //相机相册
-            success: function(photo) {
+            success: function (photo) {
                 console.log('size', photo.tempFiles[0].size / 1024 / 1024)
-                tempimageurl = photo.tempFilePaths[0];
+                tempimageurl = photo.tempFilePaths[0]
                 const fs = wx.getFileSystemManager()
                 fs.readFile({
                     filePath: photo.tempFilePaths[0],
                     success(res) {
                         let fileInfo = res.data
-                        var exifInfo = myexif.handleBinaryFile(fileInfo);
-                        console.log("打印exif信息")
-                        console.log(exifInfo);
+                        var exifInfo = myexif.handleBinaryFile(fileInfo)
+                        console.log('打印exif信息')
+                        console.log(exifInfo)
 
                         let { GPSLatitude, GPSLongitude } = exifInfo.data
-                        app.getLocationInfo(ToDigital(GPSLatitude[0].numerator / GPSLatitude[0].denominator, GPSLatitude[1].numerator / GPSLatitude[1].denominator, GPSLatitude[2].numerator / GPSLatitude[2].denominator), ToDigital(GPSLongitude[0].numerator / GPSLongitude[0].denominator, GPSLongitude[1].numerator / GPSLongitude[1].denominator, GPSLongitude[2].numerator / GPSLongitude[2].denominator), that.getPhotoAdress, 'WGS84') //GPS坐标
+                        app.getLocationInfo(
+                            ToDigital(
+                                GPSLatitude[0].numerator / GPSLatitude[0].denominator,
+                                GPSLatitude[1].numerator / GPSLatitude[1].denominator,
+                                GPSLatitude[2].numerator / GPSLatitude[2].denominator
+                            ),
+                            ToDigital(
+                                GPSLongitude[0].numerator / GPSLongitude[0].denominator,
+                                GPSLongitude[1].numerator / GPSLongitude[1].denominator,
+                                GPSLongitude[2].numerator / GPSLongitude[2].denominator
+                            ),
+                            that.getPhotoAdress,
+                            'WGS84'
+                        ) //GPS坐标
                         let PhotoDate = formatTimeTwo(new Date(reBackTime(exifInfo.data.DateTimeOriginal)).valueOf(), 'yyyy.MM.dd-hh时mm分ss秒')
                         wx.showLoading({
                             title: '获取中',
@@ -182,14 +196,12 @@ Page({
                             wx.hideLoading()
                             that.upload(tempimageurl, PhotoDate) //调用上传
                         }, 5000)
-
                     },
                     fail(res) {
                         console.error(res)
-                    }
+                    },
                 })
-
-            }
+            },
         })
     },
 })

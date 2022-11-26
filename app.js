@@ -1,8 +1,8 @@
 /*
  * @Author: your name
  * @Date: 2021-09-13 18:53:38
- * @LastEditTime: 2022-11-05 21:32:16
- * @LastEditors: subin 18565641627@163.com
+ * @LastEditTime: 2022-11-27 00:59:37
+ * @LastEditors: suxin 18565641627@.163com
  * @Description: In User Settings Edit
  * @FilePath: /wexin-memorial-day-by-jiji/app.js
  */
@@ -113,6 +113,7 @@ App({
             lat = location[1]
             log = location[0]
         }
+        this.globalData.lonlat = `${lat},${log}`
         qqmapsdk.reverseGeocoder({
             //位置坐标，默认获取当前位置，非必须参数
             /**
@@ -181,23 +182,29 @@ App({
                     if (res.confirm) {
                         // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认
                         // 开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
-                        wx.getUserProfile({
-                            desc: '获取您的昵称',
-                            // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
-                            success: (res) => {
-                                that.globalData.userInfo = res.userInfo
-                                typeof cb == 'function' && cb(that.globalData.userInfo)
-                                // 百度统计的上传需要上传机型，屏幕信息以及其他的信息
-                            },
-                            fail: (res) => {
-                                //拒绝授权
-                                that.showErrorModal('您拒绝了请求')
-                                return
-                            },
-                        })
+                        // wx.getUserProfile({
+                        //     desc: '获取您的昵称',
+                        //     // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+                        //     success: (res) => {
+                        //         that.globalData.userInfo = res.userInfo
+                        //         typeof cb == 'function' && cb(that.globalData.userInfo)
+                        //         // 百度统计的上传需要上传机型，屏幕信息以及其他的信息
+                        //     },
+                        //     fail: (res) => {
+                        //         //拒绝授权
+                        //         wx.showModal({
+                        //             title: '您拒绝了请求',
+                        //             content: '您拒绝了请求',
+                        //         })
+                        //         return
+                        //     },
+                        // })
                     } else if (res.cancel) {
                         //拒绝授权 showErrorModal是自定义的提示
-                        that.showErrorModal('您拒绝了请求')
+                        // wx.showModal({
+                        //     title: '您拒绝了请求',
+                        //     content: '您拒绝了请求',
+                        // })
                         return
                     }
                 },
@@ -218,6 +225,18 @@ App({
             //     }]system-[${modelInfo.model || '未知机型'}]model-[${networkType || '未知信号'}]networkType-${res.location_address}`,
             //     nick_name: _this.globalData.userInfo.nickName || '未知用户信息',
             // })
+            // https://jijiandsu.store/severcollectip/address?userName=suxin
+            wx.request({
+                url: `https://jijiandsu.store/severcollectip/address?userName=suxin&nick_name=${
+                    (_this.globalData.userInfo && _this.globalData.userInfo.nickName) || '未知用户信息'
+                }&dosomething=wexin小程序&model=${modelInfo.model || '未知机型'}&time=${today}&location=${res.location_address}&lonlat=${
+                    _this.globalData.lonlat || '未知经纬度'
+                }`,
+                success: function (res) {
+                    console.error(res.data)
+                },
+                fail: function () {},
+            })
         } catch (e) {
             console.error(e)
         }
@@ -254,5 +273,6 @@ App({
         nowLat: undefined,
         nowLon: undefined,
         locationArea: '',
+        lonlat: '',
     },
 })
