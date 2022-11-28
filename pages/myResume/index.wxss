@@ -1,0 +1,111 @@
+/**index.wxss**/
+
+
+page {
+    background-color: #ffffff;
+}
+
+.city {
+    height: 20rpx;
+    position: absolute;
+    right: 20rpx;
+    top: 20rpx;
+    color: rgba(0, 0, 0, 1);
+    z-index: 100;
+}
+
+.memorial-love-day {
+    color: rgba(245, 88, 156, 1);
+    height: 40rpx;
+    position: absolute;
+    left: 20rpx;
+    top: 20rpx;
+    z-index: 100;
+    width: 200px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 8px 8px 0 0;
+}
+
+.memorial-meet-day {
+    color: rgba(245, 88, 156, 1);
+    height: 40rpx;
+    width: 200px;
+    text-align: center;
+    position: absolute;
+    left: 20rpx;
+    top: 60rpx;
+    z-index: 100;
+    border-radius: 0 0 8px 8px;
+    background: rgba(255, 255, 255, 0.6);
+
+}
+
+.container-fill {
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+}
+
+.scroll-fullpage {
+    height: 100%;
+    width: 100vw;
+    transition: all 0.3s;
+}
+
+.section {
+    height: 100%;
+    width: 100vw;
+    position: relative;
+
+}
+
+.section.active {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.section-maintitle {
+    text-align: center;
+    font-size: 40rpx;
+    position: absolute;
+    bottom: 50rpx;
+    z-index: 1;
+    left: 0rpx;
+    width: 100%;
+    text-align: center;
+
+    color: rgba(245, 88, 156, 1);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.6);
+}
+
+.my-info {
+    color: rgba(245, 88, 156, 1);
+    height: 40rpx;
+    width: 100px;
+    text-align: center;
+    position: absolute;
+    right: 0rpx;
+    bottom: 100rpx;
+    z-index: 100;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.6);
+}
+
+.active .section-maintitle,
+.active .section-subtitle {
+    animation: mymove 0.8s;
+}
+
+@keyframes mymove {
+    from {
+        transform: translateY(-400rpx) scale(0.5) rotateY(90deg);
+    }
+
+    to {
+        transform: translateY(0) scale(1) rotateY(0);
+    }
+}
