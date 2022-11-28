@@ -2,6 +2,7 @@
     "pages": [
         "pages/index/index",
         "pages/weather/index",
+        "pages/weatherplace/index",
         "pages/Anniversary/Anniver",
         "pages/Anniversary/detailAnniver/detailAnniver",
         "pages/Anniversary/newAnniver/newAnniver"
