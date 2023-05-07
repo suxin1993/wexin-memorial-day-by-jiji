@@ -8,63 +8,13 @@ Page({
         memorialDay: {
             meetDay: 0,
             loveDay: 0,
+            marryDay: 0,
         },
         city: '',
         websrc: '',
         throttleTime: null,
-        // TODO: 需要删除的
-        selfTest: [
-            {
-                img: 'https://jijiandsu.store/suben/picture/photo/suben-avatar.jpg',
-                time: '2022年10月04日 结婚',
-            },
-        ],
-        photo: [
-            {
-                img: 'http://imghunan.jijiandsu.store/jijiWexin/2021.02.14-dinghunri.jpg',
-                time: '2020年07月26日【我们在一起了】',
-            },
-            {
-                img: 'http://imghunan.jijiandsu.store/jijiWexin/2021.10.03-shenzhenzijiayou.jpg',
-                time: '2020年09月27日【第一次旅游】',
-            },
-            {
-                img: 'http://imghunan.jijiandsu.store/jijiWexin/2021.10.03-shenzhenzijiayou.jpg',
-                time: '2020年11月27日【在一起的第100天】',
-            },
-            {
-                img: 'http://imghunan.jijiandsu.store/jijiWexin/2021.02.14-dinghunri.jpg',
-                time: '2021年02月14日【订婚】',
-            },
-            {
-                img: 'http://imghunan.jijiandsu.store/jijiWexin/2021.05.30-hunshazhao.jpg',
-                time: '2021年05月30日【婚纱照】',
-            },
-            {
-                img: 'http://imghunan.jijiandsu.store/jijiWexin/2021.05.30-hunshazhao.jpg',
-                time: '2021年09月29日【婚纱照】',
-            },
-            {
-                img: 'http://imghunan.jijiandsu.store/jijiWexin/2021.07.26-zhounianjinianri.jpg',
-                time: '2021年07月26日【周年纪念日】',
-            },
-            {
-                img: 'http://imghunan.jijiandsu.store/jijiWexin/2021.10.03-shenzhenzijiayou.jpg',
-                time: '2021年10月03日【深圳自驾游】',
-            },
-            {
-                img: 'https://jijiandsu.store/suben/picture/photo/2022.05.21-11%E6%97%B658%E5%88%8603%E7%A7%92-pe[%E8%87%AA%E6%8B%8D-%E7%B2%9F%E6%96%8C]-ad[%E5%B9%BF%E4%B8%9C%E7%9C%81%E6%B7%B1%E5%9C%B3%E5%B8%82%E7%BD%97%E6%B9%96%E5%8C%BA%E5%8D%97%E6%B9%96%E8%A1%97%E9%81%93%E7%BD%97%E6%B9%96(%E5%9C%B0%E9%93%81%E7%AB%99)%E6%B7%B1%E5%9C%B3%E7%AB%99%E4%B8%9C%E5%B9%BF%E5%9C%BA]-[OPPO-OPPOReno45G].jpg',
-                time: '2022年05月21日 求婚',
-            },
-            {
-                img: 'https://jijiandsu.store/suben/picture/photo/2022.05.21-11%E6%97%B658%E5%88%8603%E7%A7%92-pe[%E8%87%AA%E6%8B%8D-%E7%B2%9F%E6%96%8C]-ad[%E5%B9%BF%E4%B8%9C%E7%9C%81%E6%B7%B1%E5%9C%B3%E5%B8%82%E7%BD%97%E6%B9%96%E5%8C%BA%E5%8D%97%E6%B9%96%E8%A1%97%E9%81%93%E7%BD%97%E6%B9%96(%E5%9C%B0%E9%93%81%E7%AB%99)%E6%B7%B1%E5%9C%B3%E7%AB%99%E4%B8%9C%E5%B9%BF%E5%9C%BA]-[OPPO-OPPOReno45G].jpg',
-                time: '2022年09月28日 领婚纱照',
-            },
-            {
-                img: 'https://jijiandsu.store/suben/picture/photo/2022.05.21-11%E6%97%B658%E5%88%8603%E7%A7%92-pe[%E8%87%AA%E6%8B%8D-%E7%B2%9F%E6%96%8C]-ad[%E5%B9%BF%E4%B8%9C%E7%9C%81%E6%B7%B1%E5%9C%B3%E5%B8%82%E7%BD%97%E6%B9%96%E5%8C%BA%E5%8D%97%E6%B9%96%E8%A1%97%E9%81%93%E7%BD%97%E6%B9%96(%E5%9C%B0%E9%93%81%E7%AB%99)%E6%B7%B1%E5%9C%B3%E7%AB%99%E4%B8%9C%E5%B9%BF%E5%9C%BA]-[OPPO-OPPOReno45G].jpg',
-                time: '2022年10月04日 结婚',
-            },
-        ],
+        //TODO:改成通过接口获取
+        photo: [],
         scrollindex: 0, //当前页面的索引值
         totalnum: 4, //总共页面数
         starty: 0, //开始的位置x
@@ -203,9 +153,8 @@ Page({
     },
     getButton: function (e) {
         let self = this
-        console.error(self.data.selfTest[0].img)
         wx.getImageInfo({
-            src: self.data.selfTest[0].img,
+            src: e.currentTarget.id,
             success: function (res) {
                 console.log(res.width)
                 console.log(res.height)
@@ -250,12 +199,15 @@ Page({
         let todayDate = new Date().valueOf()
         let loveDay = new Date('2017-10-21').valueOf()
         let meetDay = new Date('2020-07-26').valueOf()
+        let marryDay = new Date('2022-10-04').valueOf()
         meetDay = Math.floor((todayDate - meetDay) / 86400000)
         loveDay = Math.floor((todayDate - loveDay) / 86400000)
+        marryDay = Math.floor((todayDate - marryDay) / 86400000)
         this.setData({
             memorialDay: {
                 meetDay: meetDay,
                 loveDay: loveDay,
+                marryDay: marryDay,
             },
         })
     },
