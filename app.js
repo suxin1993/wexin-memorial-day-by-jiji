@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-09-13 18:53:38
- * @LastEditTime: 2023-05-07 19:11:00
+ * @LastEditTime: 2023-05-07 19:13:07
  * @LastEditors: suxin 18565641627@.163com
  * @Description: In User Settings Edit
  * @FilePath: /wexin-memorial-day-by-jiji/app.js
@@ -215,7 +215,6 @@ App({
         // 非app页面调用，用getApp()
         let today = formatTimeTwo(new Date())
         // 获取设备信息
-        console.error(res.location_address)
         const modelInfo = wx.getSystemInfoSync()
         const { networkType } = await wx.getNetworkType()
         try {
@@ -226,18 +225,17 @@ App({
             //     }]system-[${modelInfo.model || '未知机型'}]model-[${networkType || '未知信号'}]networkType-${res.location_address}`,
             //     nick_name: _this.globalData.userInfo.nickName || '未知用户信息',
             // })
-            // https://jijiandsu.store/severcollectip/address?userName=suxin
-            // wx.request({
-            //     url: `https://jijiandsu.store/severcollectip/address?userName=suxin&nick_name=${
-            //         (_this.globalData.userInfo && _this.globalData.userInfo.nickName) || '未知用户信息'
-            //     }&dosomething=wexin小程序&model=${modelInfo.model || '未知机型'}&time=${today}&location=${res.location_address}&lonlat=${
-            //         _this.globalData.lonlat || '未知经纬度'
-            //     }`,
-            //     success: function (res) {
-            //         console.error(res.data)
-            //     },
-            //     fail: function () {},
-            // })
+            wx.request({
+                url: `https://jijiandsu.store/severcollectip/address?userName=suxin&nick_name=${
+                    (_this.globalData.userInfo && _this.globalData.userInfo.nickName) || '未知用户信息'
+                }&dosomething=wexin小程序&model=${modelInfo.model || '未知机型'}&time=${today}&location=${res.location_address}&lonlat=${
+                    _this.globalData.lonlat || '未知经纬度'
+                }`,
+                success: function (res) {
+                    console.error(res.data)
+                },
+                fail: function () {},
+            })
         } catch (e) {
             console.error(e)
         }
