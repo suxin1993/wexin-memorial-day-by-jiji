@@ -14,7 +14,7 @@
             <text class="section-maintitle" selectable="false" space="false" decode="false">
                 {{item.time}}
             </text>
-            <view bindtap="getButton" id="{{item.img}}">照片信息</view>
+            <view bindtap="getButton" id="{{item.img}}">信息</view>
         </view>
     </view>
 </view>
