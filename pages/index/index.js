@@ -10,6 +10,9 @@ Page({
             loveDay: 0,
             marryDay: 0,
         },
+        webmap: false,
+        nowlongitude: undefined,
+        nowlatitude: undefined,
         city: '',
         websrc: '',
         throttleTime: null,
@@ -164,6 +167,23 @@ Page({
         })
         app.getBadiu(res, _this)
     },
+    getMap: function (e) {
+        if (e.currentTarget.dataset) {
+            if (this.webmap) {
+                this.setData({
+                    webmap: false,
+                })
+            } else {
+                this.setData({
+                    webmap: true,
+                })
+            }
+            this.setData({
+                nowlongitude: e.currentTarget.dataset.lon,
+                nowlatitude: e.currentTarget.dataset.lat,
+            })
+        }
+    },
     getPhotoAdress(res) {
         console.error(res.location_address)
         this.setData({
@@ -189,22 +209,23 @@ Page({
                         let { GPSLatitude, GPSLongitude } = exifInfo.data
                         console.log(GPSLatitude)
                         console.log(GPSLongitude)
-                        app.getLocationInfo(
-                            ToDigital(
-                                GPSLatitude[0].numerator / GPSLatitude[0].denominator,
-                                GPSLatitude[1].numerator / GPSLatitude[1].denominator,
-                                GPSLatitude[2].numerator / GPSLatitude[2].denominator
-                            ),
-                            ToDigital(
-                                GPSLongitude[0].numerator / GPSLongitude[0].denominator,
-                                GPSLongitude[1].numerator / GPSLongitude[1].denominator,
-                                GPSLongitude[2].numerator / GPSLongitude[2].denominator
-                            ),
-                            self.getPhotoAdress,
-                            'WGS84'
-                        ) //GPS坐标
-                        let PhotoDate = formatTimeTwo(new Date(reBackTime(exifInfo.data.DateTimeOriginal)).valueOf(), 'yyyy.MM.dd-hh时mm分ss秒')
-                        console.error(PhotoDate)
+                        //上报信息，不需要
+                        // app.getLocationInfo(
+                        //     ToDigital(
+                        //         GPSLatitude[0].numerator / GPSLatitude[0].denominator,
+                        //         GPSLatitude[1].numerator / GPSLatitude[1].denominator,
+                        //         GPSLatitude[2].numerator / GPSLatitude[2].denominator
+                        //     ),
+                        //     ToDigital(
+                        //         GPSLongitude[0].numerator / GPSLongitude[0].denominator,
+                        //         GPSLongitude[1].numerator / GPSLongitude[1].denominator,
+                        //         GPSLongitude[2].numerator / GPSLongitude[2].denominator
+                        //     ),
+                        //     self.getPhotoAdress,
+                        //     'WGS84'
+                        // ) //GPS坐标
+                        // let PhotoDate = formatTimeTwo(new Date(reBackTime(exifInfo.data.DateTimeOriginal)).valueOf(), 'yyyy.MM.dd-hh时mm分ss秒')
+                        // console.error(PhotoDate)
                     },
                     fail(res) {
                         console.error(res)

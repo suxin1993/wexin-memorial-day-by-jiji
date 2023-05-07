@@ -7,14 +7,15 @@
     <view class="my-info" bindtap="getMyInfo">关于我</view>
     <!-- <view class="my-info" bindtap="getButton">我的test</view> -->
     <!-- 个人类型的小程序不支持使用 -->
-    <web-view wx:if="{{websrc}}" src="{{websrc}}" bindmessage=""></web-view>
+    <!-- <web-view wx:if="{{websrc}}" src="{{websrc}}" bindmessage=""></web-view> -->
+    <map wx:if="{{webmap}}" class='map' longitude="{{nowlongitude}}" latitude="{{nowlatitude}}"></map>
     <view class="scroll-fullpage" bindtouchstart="scrollTouchstart" bindtouchmove="scrollTouchmove" bindtouchend="scrollTouchend" style="transform:translateY(-{{scrollindex*100}}%);margin-top: {{margintop}}px">
         <view class="section section01 {{scrollindex==index?'active':''}}" wx:for="{{photo}}" wx:key="item">
-            <image src="{{item.img}}" alt="" srcset="" mode="widthFix"></image>
+            <!-- <image bindtap="getButton" id="{{item.img}}" src="{{item.img}}" alt="" srcset="" mode="widthFix"></image> -->
+            <image bindtap="getMap" data-lon="{{item.lon}}" data-lat="{{item.lat}}" src="{{item.img}}" alt="" srcset="" mode="widthFix"></image>
             <text class="section-maintitle" selectable="false" space="false" decode="false">
                 {{item.time}}
             </text>
-            <view bindtap="getButton" id="{{item.img}}">信息</view>
         </view>
     </view>
 </view>
