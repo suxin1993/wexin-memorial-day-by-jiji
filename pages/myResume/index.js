@@ -1,3 +1,11 @@
+/*
+ * @Author: suxin 18565641627@.163com
+ * @Date: 2022-11-28 21:20:33
+ * @LastEditors: suxin 18565641627@.163com
+ * @LastEditTime: 2023-05-07 19:08:50
+ * @FilePath: \wexin-memorial-day-by-jiji\pages\myResume\index.js
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ */
 Page({
     /**
      * 页面的初始数据
