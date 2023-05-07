@@ -13,8 +13,13 @@ Page({
         city: '',
         websrc: '',
         throttleTime: null,
-        //TODO:改成通过接口获取
-        photo: [],
+        //改成通过接口获取
+        photo: [
+            {
+                img: 'https://jijiandsu.store/suben/picture/photo/2021.02.14-18%E6%97%B621%E5%88%8637%E7%A7%92-pe[%E8%B0%A2%E5%A7%A3%E4%B8%BD-%E7%B2%9F%E6%96%8C-%E8%AE%A2%E5%A9%9A-%E6%83%85%E4%BA%BA%E8%8A%82]-ad[%E6%B9%96%E5%8D%97%E7%9C%81%E8%A1%A1%E9%98%B3%E5%B8%82%E8%92%B8%E6%B9%98%E5%8C%BA%E8%88%B9%E5%B1%B1%E5%A4%A7%E9%81%93%E8%9E%8D%E5%86%A0%E5%BD%B1%E5%9F%8E]-[noDevice].jpg',
+                time: '2021年02月14日【订婚】',
+            },
+        ],
         scrollindex: 0, //当前页面的索引值
         totalnum: 4, //总共页面数
         starty: 0, //开始的位置x
@@ -55,6 +60,18 @@ Page({
         // 获取位置
         setTimeout(() => {
             this.getLocation()
+            let that = this
+            //获取照片
+            wx.request({
+                url: `https://jijiandsu.store/severmycompany/ocr/photo/getAll`,
+                success: function (res) {
+                    console.error(res.data)
+                    that.setData({
+                        photo: res.data,
+                    })
+                },
+                fail: function () {},
+            })
         }, 1000)
     },
     onHide() {
@@ -65,13 +82,15 @@ Page({
     onShareTimeline() {
         return {
             title: '我们的纪念日',
-            imageUrl: 'http://imghunan.jijiandsu.store/jijiWexin/2021.02.14-dinghunri.jpg',
+            imageUrl:
+                'https://jijiandsu.store/suben/picture/photo/2021.02.14-18%E6%97%B621%E5%88%8637%E7%A7%92-pe[%E8%B0%A2%E5%A7%A3%E4%B8%BD-%E7%B2%9F%E6%96%8C-%E8%AE%A2%E5%A9%9A-%E6%83%85%E4%BA%BA%E8%8A%82]-ad[%E6%B9%96%E5%8D%97%E7%9C%81%E8%A1%A1%E9%98%B3%E5%B8%82%E8%92%B8%E6%B9%98%E5%8C%BA%E8%88%B9%E5%B1%B1%E5%A4%A7%E9%81%93%E8%9E%8D%E5%86%A0%E5%BD%B1%E5%9F%8E]-[noDevice].jpg',
         }
     },
     onShareAppMessage() {
         return {
             title: '我们的纪念日',
-            imageUrl: 'http://imghunan.jijiandsu.store/jijiWexin/2021.02.14-dinghunri.jpg',
+            imageUrl:
+                'https://jijiandsu.store/suben/picture/photo/2021.02.14-18%E6%97%B621%E5%88%8637%E7%A7%92-pe[%E8%B0%A2%E5%A7%A3%E4%B8%BD-%E7%B2%9F%E6%96%8C-%E8%AE%A2%E5%A9%9A-%E6%83%85%E4%BA%BA%E8%8A%82]-ad[%E6%B9%96%E5%8D%97%E7%9C%81%E8%A1%A1%E9%98%B3%E5%B8%82%E8%92%B8%E6%B9%98%E5%8C%BA%E8%88%B9%E5%B1%B1%E5%A4%A7%E9%81%93%E8%9E%8D%E5%86%A0%E5%BD%B1%E5%9F%8E]-[noDevice].jpg',
         }
     },
     getUserLocation: function () {
