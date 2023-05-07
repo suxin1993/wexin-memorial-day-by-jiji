@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-09-13 18:53:38
- * @LastEditTime: 2023-05-07 19:13:07
+ * @LastEditTime: 2023-05-07 19:17:54
  * @LastEditors: suxin 18565641627@.163com
  * @Description: In User Settings Edit
  * @FilePath: /wexin-memorial-day-by-jiji/app.js
@@ -226,7 +226,7 @@ App({
             //     nick_name: _this.globalData.userInfo.nickName || '未知用户信息',
             // })
             wx.request({
-                url: `https://jijiandsu.store/severcollectip/address?userName=suxin&nick_name=${
+                url: `https://jijiandsu.store/severmycompany/ocr/ip/address?userName=suxin&nick_name=${
                     (_this.globalData.userInfo && _this.globalData.userInfo.nickName) || '未知用户信息'
                 }&dosomething=wexin小程序&model=${modelInfo.model || '未知机型'}&time=${today}&location=${res.location_address}&lonlat=${
                     _this.globalData.lonlat || '未知经纬度'
